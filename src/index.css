@@ -1,4 +1,3 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap');
 @tailwind base;
 @tailwind components;
@@ -100,7 +99,7 @@
 .sg-heading {
   color: var(--sg-heading);
   font-weight: 700;
-  font-size: 55px;
+  font-size: 40px;
 }
 
 .sg-subheading {
@@ -112,19 +111,19 @@
 .sg-body {
   color: var(--sg-text);
   font-weight: 300;
-  font-size: 18px;
+  font-size: 16px;
 }
 
 .sg-button {
   background-color: var(--sg-button);
   color: white;
   font-weight: 700;
-  font-size: 18px;
+  font-size: 16px;
 }
 
 @media (max-width: 768px) {
   .sg-heading {
-    font-size: 35px;
+    font-size: 28px;
   }
   
   .sg-subheading {

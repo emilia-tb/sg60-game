@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import type { PlayerResult, SoundData, Player } from '../SG60Game';
 
@@ -8,13 +9,15 @@ interface ResultsCardProps {
   results: PlayerResult[];
   sounds: SoundData[];
   leaderboard: Player[];
+  onRetakeQuiz: () => void;
 }
 
 export const ResultsCard: React.FC<ResultsCardProps> = ({ 
   playerName, 
   results, 
   sounds, 
-  leaderboard 
+  leaderboard,
+  onRetakeQuiz
 }) => {
   const score = results.filter(result => result.heard).length;
   const totalSounds = sounds.length;
@@ -43,7 +46,7 @@ export const ResultsCard: React.FC<ResultsCardProps> = ({
         </div>
 
         <div className="space-y-4">
-          <h3 className="sg-subheading text-xl">Sound Breakdown</h3>
+          <h3 className="sg-subheading text-xl text-center">Sound Breakdown</h3>
           <div className="grid gap-3">
             {results.map((result, index) => {
               const sound = sounds.find(s => s.id === result.soundId);
@@ -62,19 +65,20 @@ export const ResultsCard: React.FC<ResultsCardProps> = ({
         <div className="space-y-4 p-6 bg-blue-50 rounded-xl">
           <h3 className="sg-subheading text-xl">Redeem your free gifts at our clinic</h3>
           <p className="sg-body">
-            <a 
-              href="https://www.hearingpartners.com.sg/contact-us/" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="text-[var(--sg-button)] underline hover:no-underline font-medium"
-            >
-              Fill out this form
-            </a> to reserve your free limited edition SG60 gift and hearing check and redeem it when you visit our clinic!
+            Book an appointment to redeem your free limited edition SG60 gift and hearing check at our clinic!
           </p>
+          <div className="text-center">
+            <Button
+              onClick={() => window.open('https://www.hearingpartners.com.sg/contact-us/', '_blank')}
+              className="sg-button rounded-full px-8 py-4 text-lg hover:opacity-90 transition-opacity"
+            >
+              Book an Appointment
+            </Button>
+          </div>
         </div>
 
         <div className="space-y-4">
-          <h3 className="sg-subheading text-xl">Leaderboard - Top 5 Players</h3>
+          <h3 className="sg-subheading text-xl">Leaderboard</h3>
           {leaderboard.length > 0 ? (
             <div className="space-y-2">
               {leaderboard.map((player, index) => (
@@ -99,6 +103,15 @@ export const ResultsCard: React.FC<ResultsCardProps> = ({
               Be the first to play and appear on the leaderboard!
             </p>
           )}
+          
+          <div className="text-center pt-4">
+            <Button
+              onClick={onRetakeQuiz}
+              className="sg-button rounded-full px-8 py-4 text-lg hover:opacity-90 transition-opacity"
+            >
+              Retake the quiz
+            </Button>
+          </div>
         </div>
       </CardContent>
     </Card>

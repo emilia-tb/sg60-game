@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { WelcomeCard } from './game/WelcomeCard';
 import { NameCard } from './game/NameCard';
@@ -28,7 +27,7 @@ const sounds: SoundData[] = [
     id: 1,
     name: "MRT Chime",
     description: "The familiar sound of Singapore's MRT system",
-    audioUrl: "https://www.youtube.com/watch?v=Jjj5w80SwW4"
+    audioUrl: "https://youtu.be/Jjj5w80SwW4?si=SYzxgTl4qUhwLqZN&t=6"
   },
   {
     id: 2,
@@ -136,6 +135,12 @@ const SG60Game: React.FC = () => {
     }
   };
 
+  const handleRetakeQuiz = () => {
+    setCurrentCard(0);
+    setPlayerName('');
+    setResults([]);
+  };
+
   const renderCard = () => {
     switch (currentCard) {
       case 0:
@@ -170,6 +175,7 @@ const SG60Game: React.FC = () => {
             results={results}
             sounds={sounds}
             leaderboard={leaderboard.slice(0, 5)}
+            onRetakeQuiz={handleRetakeQuiz}
           />
         );
       default:

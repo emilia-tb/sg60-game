@@ -62,11 +62,11 @@ export const SoundCard: React.FC<SoundCardProps> = ({
           </p>
         </div>
         
-        <div className="space-y-6">
+        <div className="space-y-6 text-center">
           <Button
             onClick={handlePlaySound}
             disabled={isPlaying}
-            className="sg-button rounded-full px-8 py-6 text-lg hover:opacity-90 transition-opacity disabled:opacity-50 flex items-center gap-3"
+            className="sg-button rounded-full px-8 py-6 text-lg hover:opacity-90 transition-opacity disabled:opacity-50 flex items-center gap-3 mx-auto"
           >
             <Play size={20} />
             {isPlaying ? 'Playing...' : 'Play Sound'}
