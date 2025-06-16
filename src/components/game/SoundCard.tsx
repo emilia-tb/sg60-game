@@ -25,7 +25,32 @@ export const SoundCard: React.FC<SoundCardProps> = ({
     setIsPlaying(true);
     setHasPlayed(true);
     
-    // Create a simple beep sound as placeholder since we can't directly play YouTube videos
+    // Play the actual audio file if available, otherwise fallback to beep
+    if (sound.audioUrl && sound.audioUrl.startsWith('/')) {
+      const audio = new Audio(sound.audioUrl);
+      audio.play().then(() => {
+        console.log(`Playing sound: ${sound.name} from ${sound.audioUrl}`);
+      }).catch((error) => {
+        console.error('Error playing audio:', error);
+        // Fallback to beep sound
+        playBeepSound();
+      });
+      
+      audio.onended = () => {
+        setIsPlaying(false);
+      };
+      
+      // Set a timeout as backup in case onended doesn't fire
+      setTimeout(() => {
+        setIsPlaying(false);
+      }, 5000);
+    } else {
+      // Fallback beep sound for other sounds
+      playBeepSound();
+    }
+  };
+
+  const playBeepSound = () => {
     const audioContext = new (window.AudioContext || (window as any).webkitAudioContext)();
     const oscillator = audioContext.createOscillator();
     const gainNode = audioContext.createGain();
@@ -43,12 +68,10 @@ export const SoundCard: React.FC<SoundCardProps> = ({
     setTimeout(() => {
       setIsPlaying(false);
     }, 2000);
-    
-    console.log(`Playing sound: ${sound.name} from ${sound.audioUrl}`);
   };
 
   return (
-    <Card className="w-full bg-white shadow-lg border-0 rounded-3xl p-4 md:p-8">
+    <Card className="w-full bg-white shadow-lg border-0 rounded-3xl p-2 md:p-8">
       <CardContent className="text-center space-y-4 md:space-y-6">
         <div className="space-y-2">
           <p className="sg-body opacity-70">
@@ -77,16 +100,16 @@ export const SoundCard: React.FC<SoundCardProps> = ({
               <p className="sg-body font-medium">
                 Did you hear the sound clearly?
               </p>
-              <div className="flex flex-col md:flex-row gap-3 md:gap-4 justify-center">
+              <div className="flex flex-col gap-3 justify-center">
                 <Button
                   onClick={() => onResponse(true)}
-                  className="bg-green-600 hover:bg-green-700 text-white rounded-full px-6 py-3 md:py-4 text-base md:text-lg transition-colors order-1"
+                  className="bg-green-600 hover:bg-green-700 text-white rounded-full px-6 py-3 md:py-4 text-base md:text-lg transition-colors w-full"
                 >
                   Yes, I heard it
                 </Button>
                 <Button
                   onClick={() => onResponse(false)}
-                  className="bg-red-600 hover:bg-red-700 text-white rounded-full px-6 py-3 md:py-4 text-base md:text-lg transition-colors order-2"
+                  className="bg-red-600 hover:bg-red-700 text-white rounded-full px-6 py-3 md:py-4 text-base md:text-lg transition-colors w-full"
                 >
                   No, I didn't hear it
                 </Button>

@@ -27,7 +27,7 @@ const sounds: SoundData[] = [
     id: 1,
     name: "MRT Chime",
     description: "The familiar sound of Singapore's MRT system",
-    audioUrl: "https://youtu.be/Jjj5w80SwW4?si=SYzxgTl4qUhwLqZN&t=6"
+    audioUrl: "/[High Volume] Singapore MRT Melodies Chimes [TubeRipper.com].mp3"
   },
   {
     id: 2,
