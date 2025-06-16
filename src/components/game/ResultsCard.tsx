@@ -29,8 +29,8 @@ export const ResultsCard: React.FC<ResultsCardProps> = ({
   };
 
   return (
-    <Card className="w-full bg-white shadow-lg border-0 rounded-3xl p-8">
-      <CardContent className="space-y-8">
+    <Card className="w-full bg-white shadow-lg border-0 rounded-3xl p-4 md:p-8">
+      <CardContent className="space-y-6 md:space-y-8">
         <div className="text-center space-y-4">
           <h2 className="sg-subheading">
             Results for {playerName}
@@ -62,7 +62,7 @@ export const ResultsCard: React.FC<ResultsCardProps> = ({
           </div>
         </div>
 
-        <div className="space-y-4 p-6 bg-blue-50 rounded-xl">
+        <div className="space-y-4 p-4 md:p-6 bg-blue-50 rounded-xl">
           <h3 className="sg-subheading text-xl">Redeem your free gifts at our clinic</h3>
           <p className="sg-body">
             Book an appointment to redeem your free limited edition SG60 gift and hearing check at our clinic!
@@ -70,7 +70,7 @@ export const ResultsCard: React.FC<ResultsCardProps> = ({
           <div className="text-center">
             <Button
               onClick={() => window.open('https://www.hearingpartners.com.sg/contact-us/', '_blank')}
-              className="sg-button rounded-full px-8 py-4 text-lg hover:opacity-90 transition-opacity"
+              className="sg-button rounded-full px-4 md:px-8 py-3 md:py-4 text-sm md:text-lg hover:opacity-90 transition-opacity w-full md:w-auto"
             >
               Book an Appointment
             </Button>
@@ -107,7 +107,7 @@ export const ResultsCard: React.FC<ResultsCardProps> = ({
           <div className="text-center pt-4">
             <Button
               onClick={onRetakeQuiz}
-              className="sg-button rounded-full px-8 py-4 text-lg hover:opacity-90 transition-opacity"
+              className="sg-button rounded-full px-4 md:px-8 py-3 md:py-4 text-sm md:text-lg hover:opacity-90 transition-opacity w-full md:w-auto"
             >
               Retake the quiz
             </Button>
