@@ -48,8 +48,8 @@ export const SoundCard: React.FC<SoundCardProps> = ({
   };
 
   return (
-    <Card className="w-full bg-white shadow-lg border-0 rounded-3xl p-8">
-      <CardContent className="text-center space-y-6">
+    <Card className="w-full bg-white shadow-lg border-0 rounded-3xl p-4 md:p-8">
+      <CardContent className="text-center space-y-4 md:space-y-6">
         <div className="space-y-2">
           <p className="sg-body opacity-70">
             Sound {soundNumber} of {totalSounds}
@@ -62,11 +62,11 @@ export const SoundCard: React.FC<SoundCardProps> = ({
           </p>
         </div>
         
-        <div className="space-y-6 text-center">
+        <div className="space-y-4 md:space-y-6 text-center">
           <Button
             onClick={handlePlaySound}
             disabled={isPlaying}
-            className="sg-button rounded-full px-8 py-6 text-lg hover:opacity-90 transition-opacity disabled:opacity-50 flex items-center gap-3 mx-auto"
+            className="sg-button rounded-full px-6 md:px-8 py-4 md:py-6 text-base md:text-lg hover:opacity-90 transition-opacity disabled:opacity-50 flex items-center gap-3 mx-auto"
           >
             <Play size={20} />
             {isPlaying ? 'Playing...' : 'Play Sound'}
@@ -77,16 +77,16 @@ export const SoundCard: React.FC<SoundCardProps> = ({
               <p className="sg-body font-medium">
                 Did you hear the sound clearly?
               </p>
-              <div className="flex gap-4 justify-center">
+              <div className="flex flex-col md:flex-row gap-3 md:gap-4 justify-center">
                 <Button
                   onClick={() => onResponse(true)}
-                  className="bg-green-600 hover:bg-green-700 text-white rounded-full px-6 py-4 text-lg transition-colors"
+                  className="bg-green-600 hover:bg-green-700 text-white rounded-full px-6 py-3 md:py-4 text-base md:text-lg transition-colors order-1"
                 >
                   Yes, I heard it
                 </Button>
                 <Button
                   onClick={() => onResponse(false)}
-                  className="bg-red-600 hover:bg-red-700 text-white rounded-full px-6 py-4 text-lg transition-colors"
+                  className="bg-red-600 hover:bg-red-700 text-white rounded-full px-6 py-3 md:py-4 text-base md:text-lg transition-colors order-2"
                 >
                   No, I didn't hear it
                 </Button>

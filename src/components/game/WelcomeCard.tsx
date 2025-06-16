@@ -9,8 +9,8 @@ interface WelcomeCardProps {
 
 export const WelcomeCard: React.FC<WelcomeCardProps> = ({ onStart }) => {
   return (
-    <Card className="w-full bg-white shadow-lg border-0 rounded-3xl p-8">
-      <CardContent className="text-center space-y-6">
+    <Card className="w-full bg-white shadow-lg border-0 rounded-3xl p-4 md:p-8">
+      <CardContent className="text-center space-y-4 md:space-y-6">
         <h1 className="sg-heading leading-tight">
           Rediscover the Sounds of Singapore — SG60 Sound Game!
         </h1>
@@ -45,7 +45,7 @@ export const WelcomeCard: React.FC<WelcomeCardProps> = ({ onStart }) => {
         
         <Button
           onClick={onStart}
-          className="sg-button rounded-full px-8 py-6 text-lg hover:opacity-90 transition-opacity"
+          className="sg-button rounded-full px-6 md:px-8 py-4 md:py-6 text-base md:text-lg hover:opacity-90 transition-opacity"
         >
           Start Game
         </Button>
