@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { WelcomeCard } from './game/WelcomeCard';
 import { NameCard } from './game/NameCard';
@@ -94,11 +93,9 @@ const SG60Game: React.FC = () => {
   const [leaderboard, setLeaderboard] = useState<Player[]>([]);
 
   useEffect(() => {
-    // Load leaderboard from localStorage
-    const savedLeaderboard = localStorage.getItem('sg60-leaderboard');
-    if (savedLeaderboard) {
-      setLeaderboard(JSON.parse(savedLeaderboard));
-    }
+    // Reset leaderboard by clearing localStorage
+    localStorage.removeItem('sg60-leaderboard');
+    setLeaderboard([]);
   }, []);
 
   const handleStartGame = () => {
