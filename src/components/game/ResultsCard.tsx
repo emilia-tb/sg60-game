@@ -61,8 +61,8 @@ export const ResultsCard: React.FC<ResultsCardProps> = ({
         </div>
 
         <div className="space-y-4 p-4 md:p-6 bg-blue-50 rounded-xl">
-          <h3 className="sg-subheading text-xl">Redeem your free gifts at our clinic</h3>
-          <p className="sg-body">
+          <h3 className="sg-subheading text-xl text-center">Redeem your free gifts at our clinic</h3>
+          <p className="sg-body text-center">
             Book an appointment to redeem your free limited edition SG60 gift and hearing check at our clinic!
           </p>
           <div className="text-center">
@@ -78,7 +78,8 @@ export const ResultsCard: React.FC<ResultsCardProps> = ({
         <div className="text-center">
           <Button
             onClick={onRetakeQuiz}
-            className="sg-button rounded-full px-4 md:px-8 py-3 md:py-4 text-sm md:text-lg hover:opacity-90 transition-opacity w-full md:w-auto"
+            style={{ backgroundColor: '#005da9' }}
+            className="text-white rounded-full px-4 md:px-8 py-3 md:py-4 text-sm md:text-lg hover:opacity-90 transition-opacity w-full md:w-auto"
           >
             Retake the quiz
           </Button>

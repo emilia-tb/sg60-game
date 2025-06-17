@@ -23,7 +23,7 @@ export const Leaderboard: React.FC<LeaderboardProps> = ({
   return (
     <Card className="w-full bg-white shadow-lg border-0 rounded-3xl p-4">
       <CardContent className="space-y-4">
-        <h3 className="sg-subheading text-xl text-center">Leaderboard</h3>
+        <h3 className="sg-subheading text-xl text-center pt-4">Leaderboard</h3>
         {leaderboard.length > 0 ? (
           <div className="space-y-2">
             {leaderboard.map((player, index) => (
