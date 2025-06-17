@@ -2,13 +2,12 @@
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import type { PlayerResult, SoundData, Player } from '../SG60Game';
+import type { PlayerResult, SoundData } from '../SG60Game';
 
 interface ResultsCardProps {
   playerName: string;
   results: PlayerResult[];
   sounds: SoundData[];
-  leaderboard: Player[];
   onRetakeQuiz: () => void;
 }
 
@@ -16,7 +15,6 @@ export const ResultsCard: React.FC<ResultsCardProps> = ({
   playerName, 
   results, 
   sounds, 
-  leaderboard,
   onRetakeQuiz
 }) => {
   const score = results.filter(result => result.heard).length;
@@ -77,41 +75,13 @@ export const ResultsCard: React.FC<ResultsCardProps> = ({
           </div>
         </div>
 
-        <div className="space-y-4">
-          <h3 className="sg-subheading text-xl">Leaderboard</h3>
-          {leaderboard.length > 0 ? (
-            <div className="space-y-2">
-              {leaderboard.map((player, index) => (
-                <div 
-                  key={`${player.name}-${player.timestamp}`}
-                  className={`flex items-center justify-between p-3 rounded-lg ${
-                    player.name === playerName ? 'bg-yellow-100 border-2 border-yellow-400' : 'bg-gray-50'
-                  }`}
-                >
-                  <div className="flex items-center gap-3">
-                    <span className="font-bold text-lg w-8">#{index + 1}</span>
-                    <span className="sg-body font-medium">{player.name}</span>
-                  </div>
-                  <span className={`font-bold text-lg ${getScoreColor(player.score)}`}>
-                    {player.score}/{totalSounds}
-                  </span>
-                </div>
-              ))}
-            </div>
-          ) : (
-            <p className="sg-body text-center opacity-70">
-              Be the first to play and appear on the leaderboard!
-            </p>
-          )}
-          
-          <div className="text-center pt-4">
-            <Button
-              onClick={onRetakeQuiz}
-              className="sg-button rounded-full px-4 md:px-8 py-3 md:py-4 text-sm md:text-lg hover:opacity-90 transition-opacity w-full md:w-auto"
-            >
-              Retake the quiz
-            </Button>
-          </div>
+        <div className="text-center">
+          <Button
+            onClick={onRetakeQuiz}
+            className="sg-button rounded-full px-4 md:px-8 py-3 md:py-4 text-sm md:text-lg hover:opacity-90 transition-opacity w-full md:w-auto"
+          >
+            Retake the quiz
+          </Button>
         </div>
       </CardContent>
     </Card>

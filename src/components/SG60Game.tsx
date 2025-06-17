@@ -1,8 +1,10 @@
+
 import React, { useState, useEffect } from 'react';
 import { WelcomeCard } from './game/WelcomeCard';
 import { NameCard } from './game/NameCard';
 import { SoundCard } from './game/SoundCard';
 import { ResultsCard } from './game/ResultsCard';
+import { Leaderboard } from './game/Leaderboard';
 
 export interface SoundData {
   id: number;
@@ -38,7 +40,7 @@ const sounds: SoundData[] = [
   {
     id: 3,
     name: "Birdsong",
-    description: "The melodious birds of Singapore",
+    description: "The sound of the iconic Koel bird",
     audioUrl: "/SG60 Sound Game - Koel Bird.mp3"
   },
   {
@@ -80,7 +82,7 @@ const sounds: SoundData[] = [
   {
     id: 10,
     name: "Ice Cream Cart",
-    description: "The nostalgic melody of the ice cream uncle",
+    description: "The sound of an ice cream scoop",
     audioUrl: "/SG60 Sound Game - Ice cream cart.mp3"
   }
 ];
@@ -174,7 +176,6 @@ const SG60Game: React.FC = () => {
             playerName={playerName}
             results={results}
             sounds={sounds}
-            leaderboard={leaderboard.slice(0, 5)}
             onRetakeQuiz={handleRetakeQuiz}
           />
         );
@@ -184,10 +185,15 @@ const SG60Game: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-4">
-      <div className="w-full max-w-2xl">
+    <div className="min-h-screen flex flex-col items-center justify-center p-4">
+      <div className="w-full max-w-2xl mb-6">
         {renderCard()}
       </div>
+      {leaderboard.length > 0 && (
+        <div className="w-full max-w-2xl mt-6">
+          <Leaderboard leaderboard={leaderboard.slice(0, 5)} playerName={playerName} totalSounds={sounds.length} />
+        </div>
+      )}
     </div>
   );
 };

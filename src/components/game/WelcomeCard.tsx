@@ -2,7 +2,7 @@
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import { FastForward, Computer } from 'lucide-react';
+import { Clock, Phone } from 'lucide-react';
 
 interface WelcomeCardProps {
   onStart: () => void;
@@ -27,11 +27,11 @@ export const WelcomeCard: React.FC<WelcomeCardProps> = ({ onStart }) => {
           <div className="space-y-4 max-w-md mx-auto">
             <div className="grid grid-cols-2 gap-4">
               <div className="flex flex-col items-center space-y-2">
-                <FastForward className="text-green-600" size={24} />
+                <Clock className="text-[#005da9]" size={24} />
                 <span className="sg-body">Fast and fun</span>
               </div>
               <div className="flex flex-col items-center space-y-2">
-                <Computer className="text-green-600" size={24} />
+                <Phone className="text-[#005da9]" size={24} />
                 <span className="sg-body">Works on your phone or computer</span>
               </div>
             </div>
