@@ -27,61 +27,61 @@ const sounds: SoundData[] = [
     id: 1,
     name: "MRT Chime",
     description: "The familiar sound of Singapore's MRT system",
-    audioUrl: "/[High Volume] Singapore MRT Melodies Chimes [TubeRipper.com].mp3"
+    audioUrl: "/SG60 Sound Game - MRT.mp3"
   },
   {
     id: 2,
     name: "Hawker Sounds",
     description: "The bustling sounds of a Singapore hawker centre",
-    audioUrl: "https://www.youtube.com/watch?v=UYCJczAjlqE"
+    audioUrl: "/SG60 Sound Game - Hawker.mp3"
   },
   {
     id: 3,
     name: "Birdsong",
     description: "The melodious birds of Singapore",
-    audioUrl: "https://www.youtube.com/watch?v=VvQaVyjXP1M"
+    audioUrl: "/SG60 Sound Game - Koel Bird.mp3"
   },
   {
     id: 4,
     name: "Lion Dance",
     description: "Traditional lion dance performance",
-    audioUrl: "https://www.youtube.com/watch?v=B1_3YRI3YXs"
+    audioUrl: "/SG60 Sound Game - Lion Dance.mp3"
   },
   {
     id: 5,
-    name: "Majulah Singapura",
+    name: "National Anthem",
     description: "Singapore's national anthem",
-    audioUrl: "https://www.youtube.com/watch?v=che2uTVwtGw"
+    audioUrl: "/SG60 Sound Game - National Athem.mp3"
   },
   {
     id: 6,
     name: "Wet Market",
     description: "The lively sounds of a traditional wet market",
-    audioUrl: "https://www.youtube.com/shorts/qRt9l21G3ZA"
+    audioUrl: "/SG60 Sound Game - Market.mp3"
   },
   {
     id: 7,
     name: "Airplane",
     description: "Aircraft sounds from Changi Airport",
-    audioUrl: "https://www.youtube.com/shorts/Mxv4zHXHTCw"
+    audioUrl: "/SG60 Sound Game - Airplane.mp3"
   },
   {
     id: 8,
-    name: "Bus Beep",
+    name: "Bus Doors Closing",
     description: "Singapore bus door closing beep",
-    audioUrl: "https://www.youtube.com/watch?v=GAfPHQbuBIQ"
+    audioUrl: "/SG60 Sound Game - Bus doors closing.mp3"
   },
   {
     id: 9,
     name: "Kallang Wave",
     description: "The roar of the Kallang Wave at the stadium",
-    audioUrl: "https://www.youtube.com/shorts/xcR3qVKvha4"
+    audioUrl: "/SG60 Sound Game - Kallang Wave.mp3"
   },
   {
     id: 10,
     name: "Ice Cream Cart",
     description: "The nostalgic melody of the ice cream uncle",
-    audioUrl: "https://www.youtube.com/shorts/x3yySOUfP-A"
+    audioUrl: "/SG60 Sound Game - Ice cream cart.mp3"
   }
 ];
 
