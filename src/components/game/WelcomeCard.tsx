@@ -2,6 +2,7 @@
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
+import { FastForward, Computer } from 'lucide-react';
 
 interface WelcomeCardProps {
   onStart: () => void;
@@ -23,18 +24,21 @@ export const WelcomeCard: React.FC<WelcomeCardProps> = ({ onStart }) => {
             From hawker centre sizzles to MRT chimes, play our fun Sounds of Singapore game and find out.
           </p>
           
-          <div className="space-y-2 text-center max-w-md mx-auto">
-            <div className="flex items-center justify-center sg-body">
-              <span className="text-green-600 mr-2">•</span>
-              Fast and fun
+          <div className="space-y-4 max-w-md mx-auto">
+            <div className="grid grid-cols-2 gap-4">
+              <div className="flex flex-col items-center space-y-2">
+                <FastForward className="text-green-600" size={24} />
+                <span className="sg-body">Fast and fun</span>
+              </div>
+              <div className="flex flex-col items-center space-y-2">
+                <Computer className="text-green-600" size={24} />
+                <span className="sg-body">Works on your phone or computer</span>
+              </div>
             </div>
-            <div className="flex items-center justify-center sg-body">
-              <span className="text-green-600 mr-2">•</span>
-              Works on your phone or computer
-            </div>
-            <div className="flex items-center justify-center sg-body">
-              <span className="text-green-600 mr-2">•</span>
-              Win a free limited edition SG60 gift and hearing check when you visit our clinic!
+            <div className="text-center">
+              <span className="sg-body font-bold">
+                Win a free limited edition SG60 gift and hearing check when you visit our clinic!
+              </span>
             </div>
           </div>
         </div>
