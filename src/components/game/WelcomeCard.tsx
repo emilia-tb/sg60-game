@@ -10,9 +10,9 @@ interface WelcomeCardProps {
 
 export const WelcomeCard: React.FC<WelcomeCardProps> = ({ onStart }) => {
   return (
-    <Card className="w-full bg-white shadow-lg border-0 rounded-3xl p-2 md:p-8">
+    <Card className="w-full bg-white shadow-lg border-0 rounded-3xl p-2 md:p-4">
       <CardContent className="text-center space-y-4 md:space-y-6">
-        <h2 className="sg-subheading">
+        <h2 className="sg-subheading pt-4 md:pt-0">
           Join us in celebrating SG60 — can you guess these iconic Singapore sounds?
         </h2>
         
