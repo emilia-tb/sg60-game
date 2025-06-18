@@ -28,61 +28,61 @@ const sounds: SoundData[] = [
     id: 1,
     name: "MRT Chime",
     description: "The familiar sound of Singapore's MRT system",
-    audioUrl: "/SG60 Sound Game - MRT.mp3"
+    audioUrl: "https://489296fd-c61a-48cb-8b33-ae65b89cc1d8.lovableproject.com/SG60 Sound Game - MRT.mp3"
   },
   {
     id: 2,
     name: "Hawker Sounds",
     description: "The bustling sounds of a Singapore hawker centre",
-    audioUrl: "/SG60 Sound Game - Hawker.mp3"
+    audioUrl: "https://489296fd-c61a-48cb-8b33-ae65b89cc1d8.lovableproject.com/SG60 Sound Game - Hawker.mp3"
   },
   {
     id: 3,
     name: "Birdsong",
     description: "The sound of the iconic Koel bird",
-    audioUrl: "/SG60 Sound Game - Koel Bird.mp3"
+    audioUrl: "https://489296fd-c61a-48cb-8b33-ae65b89cc1d8.lovableproject.com/SG60 Sound Game - Koel Bird.mp3"
   },
   {
     id: 4,
     name: "Lion Dance",
     description: "Traditional lion dance performance",
-    audioUrl: "/SG60 Sound Game - Lion Dance.mp3"
+    audioUrl: "https://489296fd-c61a-48cb-8b33-ae65b89cc1d8.lovableproject.com/SG60 Sound Game - Lion Dance.mp3"
   },
   {
     id: 5,
     name: "National Anthem",
     description: "Singapore's national anthem",
-    audioUrl: "/SG60 Sound Game - National Athem.mp3"
+    audioUrl: "https://489296fd-c61a-48cb-8b33-ae65b89cc1d8.lovableproject.com/SG60 Sound Game - National Athem.mp3"
   },
   {
     id: 6,
     name: "Wet Market",
     description: "The lively sounds of a traditional wet market",
-    audioUrl: "/SG60 Sound Game - Market.mp3"
+    audioUrl: "https://489296fd-c61a-48cb-8b33-ae65b89cc1d8.lovableproject.com/SG60 Sound Game - Market.mp3"
   },
   {
     id: 7,
     name: "Airplane",
     description: "Aircraft sounds from Changi Airport",
-    audioUrl: "/SG60 Sound Game - Airplane.mp3"
+    audioUrl: "https://489296fd-c61a-48cb-8b33-ae65b89cc1d8.lovableproject.com/SG60 Sound Game - Airplane.mp3"
   },
   {
     id: 8,
     name: "Bus Doors Closing",
     description: "Singapore bus door closing beep",
-    audioUrl: "/SG60 Sound Game - Bus doors closing.mp3"
+    audioUrl: "https://489296fd-c61a-48cb-8b33-ae65b89cc1d8.lovableproject.com/SG60 Sound Game - Bus doors closing.mp3"
   },
   {
     id: 9,
     name: "Kallang Wave",
     description: "The roar of the Kallang Wave at the stadium",
-    audioUrl: "/SG60 Sound Game - Kallang Wave.mp3"
+    audioUrl: "https://489296fd-c61a-48cb-8b33-ae65b89cc1d8.lovableproject.com/SG60 Sound Game - Kallang Wave.mp3"
   },
   {
     id: 10,
     name: "Ice Cream Cart",
     description: "The sound of an ice cream scoop",
-    audioUrl: "/SG60 Sound Game - Ice cream cart.mp3"
+    audioUrl: "https://489296fd-c61a-48cb-8b33-ae65b89cc1d8.lovableproject.com/SG60 Sound Game - Ice cream cart.mp3"
   }
 ];
 
