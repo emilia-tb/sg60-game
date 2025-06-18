@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Play } from 'lucide-react';
@@ -20,54 +20,75 @@ export const SoundCard: React.FC<SoundCardProps> = ({
 }) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [hasPlayed, setHasPlayed] = useState(false);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
 
-  const handlePlaySound = () => {
+  const handlePlaySound = async () => {
     setIsPlaying(true);
     setHasPlayed(true);
     
-    // Play the actual audio file if available, otherwise fallback to beep
-    if (sound.audioUrl && sound.audioUrl.startsWith('/')) {
-      const audio = new Audio(sound.audioUrl);
-      audio.play().then(() => {
-        console.log(`Playing sound: ${sound.name} from ${sound.audioUrl}`);
-      }).catch((error) => {
-        console.error('Error playing audio:', error);
-        // Fallback to beep sound
-        playBeepSound();
-      });
+    try {
+      // Create audio element if it doesn't exist
+      if (!audioRef.current) {
+        audioRef.current = new Audio(sound.audioUrl);
+        audioRef.current.preload = 'metadata';
+        
+        // Add event listeners
+        audioRef.current.onended = () => {
+          setIsPlaying(false);
+        };
+        
+        audioRef.current.onerror = () => {
+          console.error('Error loading audio:', sound.audioUrl);
+          playBeepSound();
+        };
+      }
       
-      audio.onended = () => {
-        setIsPlaying(false);
-      };
+      // Reset audio to beginning
+      audioRef.current.currentTime = 0;
+      
+      // For mobile devices, we need to handle user interaction requirements
+      const playPromise = audioRef.current.play();
+      
+      if (playPromise !== undefined) {
+        await playPromise;
+        console.log(`Playing sound: ${sound.name} from ${sound.audioUrl}`);
+      }
       
       // Set a timeout as backup in case onended doesn't fire
       setTimeout(() => {
         setIsPlaying(false);
-      }, 5000);
-    } else {
-      // Fallback beep sound for other sounds
+      }, 10000);
+      
+    } catch (error) {
+      console.error('Error playing audio:', error);
+      // Fallback to beep sound
       playBeepSound();
     }
   };
 
   const playBeepSound = () => {
-    const audioContext = new (window.AudioContext || (window as any).webkitAudioContext)();
-    const oscillator = audioContext.createOscillator();
-    const gainNode = audioContext.createGain();
-    
-    oscillator.connect(gainNode);
-    gainNode.connect(audioContext.destination);
-    
-    oscillator.frequency.setValueAtTime(800, audioContext.currentTime);
-    gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
-    gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 2);
-    
-    oscillator.start(audioContext.currentTime);
-    oscillator.stop(audioContext.currentTime + 2);
-    
-    setTimeout(() => {
+    try {
+      const audioContext = new (window.AudioContext || (window as any).webkitAudioContext)();
+      const oscillator = audioContext.createOscillator();
+      const gainNode = audioContext.createGain();
+      
+      oscillator.connect(gainNode);
+      gainNode.connect(audioContext.destination);
+      
+      oscillator.frequency.setValueAtTime(800, audioContext.currentTime);
+      gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+      gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 2);
+      
+      oscillator.start(audioContext.currentTime);
+      oscillator.stop(audioContext.currentTime + 2);
+      
+      setTimeout(() => {
+        setIsPlaying(false);
+      }, 2000);
+    } catch (error) {
+      console.error('Error playing beep sound:', error);
       setIsPlaying(false);
-    }, 2000);
+    }
   };
 
   return (
