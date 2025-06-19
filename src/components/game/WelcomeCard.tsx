@@ -32,9 +32,7 @@ export const WelcomeCard: React.FC<WelcomeCardProps> = ({
               </div>
             </div>
             <div className="text-center p-4 border-2 border-blue-400 rounded-xl bg-sky-100 px-0">
-              <span className="sg-body text-[#005da9] font-bold">
-                Win a free limited edition SG60 gift and hearing check when you visit our clinic!
-              </span>
+              <span className="sg-body text-[#005da9] font-bold">Win a free hearing check and limited edition SG60 gift upon completing the game!</span>
             </div>
           </div>
         </div>
