@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { WelcomeCard } from './game/WelcomeCard';
 import { NameCard } from './game/NameCard';
