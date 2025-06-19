@@ -1,16 +1,28 @@
+
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Zap, Smartphone } from 'lucide-react';
+
 interface WelcomeCardProps {
   onStart: () => void;
 }
+
 export const WelcomeCard: React.FC<WelcomeCardProps> = ({
   onStart
 }) => {
-  return <Card className="w-full bg-white shadow-lg border-0 rounded-3xl p-2 md:p-4">
+  return (
+    <Card className="w-full bg-white shadow-lg border-0 rounded-3xl p-2 md:p-4">
       <CardContent className="text-center space-y-4 md:space-y-6">
         <h2 className="sg-subheading pt-4 md:pt-8 lg:pt-12">Join us in celebrating SG60 — can you guess these iconic Singapore sounds? 🤔</h2>
+        
+        <div className="flex justify-center mb-6">
+          <img 
+            src="/SG60 Sound Game NDP Image.png" 
+            alt="SG60 NDP Celebration" 
+            className="max-w-full h-auto rounded-lg shadow-md"
+          />
+        </div>
         
         <div className="space-y-4">
           <p className="sg-body">
@@ -20,7 +32,7 @@ export const WelcomeCard: React.FC<WelcomeCardProps> = ({
             From hawker centre sizzles to MRT chimes, play our fun Sounds of Singapore game and find out.
           </p>
           
-          <div className="space-y-4 max-w-lg mx-auto">
+          <div className="space-y-4 max-w-lg mx-auto w-full">
             <div className="grid grid-cols-2 gap-4">
               <div className="flex flex-col items-center space-y-2">
                 <Zap className="text-[#005da9]" size={24} />
@@ -41,5 +53,6 @@ export const WelcomeCard: React.FC<WelcomeCardProps> = ({
           Start Game
         </Button>
       </CardContent>
-    </Card>;
+    </Card>
+  );
 };

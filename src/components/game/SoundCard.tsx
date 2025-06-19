@@ -9,30 +9,38 @@ interface SoundCardProps {
   sound: SoundData;
   soundNumber: number;
   totalSounds: number;
-  onResponse: (heard: boolean) => void;
+  soundOptions: string[];
+  elapsedTime: number;
+  onResponse: (selectedAnswer: string) => void;
 }
 
 export const SoundCard: React.FC<SoundCardProps> = ({ 
   sound, 
   soundNumber, 
   totalSounds, 
+  soundOptions,
+  elapsedTime,
   onResponse 
 }) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [hasPlayed, setHasPlayed] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
+  const formatTime = (seconds: number) => {
+    const mins = Math.floor(seconds / 60);
+    const secs = seconds % 60;
+    return `${mins}:${secs.toString().padStart(2, '0')}`;
+  };
+
   const handlePlaySound = async () => {
     setIsPlaying(true);
     setHasPlayed(true);
     
     try {
-      // Create audio element if it doesn't exist
       if (!audioRef.current) {
         audioRef.current = new Audio(sound.audioUrl);
         audioRef.current.preload = 'metadata';
         
-        // Add event listeners
         audioRef.current.onended = () => {
           setIsPlaying(false);
         };
@@ -43,10 +51,7 @@ export const SoundCard: React.FC<SoundCardProps> = ({
         };
       }
       
-      // Reset audio to beginning
       audioRef.current.currentTime = 0;
-      
-      // For mobile devices, we need to handle user interaction requirements
       const playPromise = audioRef.current.play();
       
       if (playPromise !== undefined) {
@@ -54,14 +59,12 @@ export const SoundCard: React.FC<SoundCardProps> = ({
         console.log(`Playing sound: ${sound.name} from ${sound.audioUrl}`);
       }
       
-      // Set a timeout as backup in case onended doesn't fire
       setTimeout(() => {
         setIsPlaying(false);
       }, 10000);
       
     } catch (error) {
       console.error('Error playing audio:', error);
-      // Fallback to beep sound
       playBeepSound();
     }
   };
@@ -93,17 +96,19 @@ export const SoundCard: React.FC<SoundCardProps> = ({
 
   return (
     <Card className="w-full bg-white shadow-lg border-0 rounded-3xl p-2 md:p-8">
-      <CardContent className="text-center space-y-4 md:space-y-6">
-        <div className="space-y-2">
-          <p className="sg-body opacity-70">
-            Sound {soundNumber} of {totalSounds}
-          </p>
+      <CardContent className="space-y-4 md:space-y-6">
+        {/* Timer in top right */}
+        <div className="flex justify-between items-center">
+          <div></div>
+          <div className="bg-[#005da9] text-white px-3 py-1 rounded-full text-sm font-medium">
+            {formatTime(elapsedTime)}
+          </div>
+        </div>
+
+        <div className="text-center space-y-2">
           <h2 className="sg-subheading">
-            {sound.name}
+            Sound {soundNumber} of {totalSounds}
           </h2>
-          <p className="sg-body">
-            {sound.description}
-          </p>
         </div>
         
         <div className="space-y-4 md:space-y-6 text-center">
@@ -119,21 +124,18 @@ export const SoundCard: React.FC<SoundCardProps> = ({
           {hasPlayed && (
             <div className="space-y-4">
               <p className="sg-body font-medium">
-                Did you hear the sound clearly?
+                What sound did you hear?
               </p>
-              <div className="flex flex-col gap-3 justify-center">
-                <Button
-                  onClick={() => onResponse(true)}
-                  className="bg-green-600 hover:bg-green-700 text-white rounded-full px-6 py-3 md:py-4 text-base md:text-lg transition-colors w-full"
-                >
-                  Yes, I heard it
-                </Button>
-                <Button
-                  onClick={() => onResponse(false)}
-                  className="bg-red-600 hover:bg-red-700 text-white rounded-full px-6 py-3 md:py-4 text-base md:text-lg transition-colors w-full"
-                >
-                  No, I didn't hear it
-                </Button>
+              <div className="grid grid-cols-2 gap-3">
+                {soundOptions.map((option) => (
+                  <Button
+                    key={option}
+                    onClick={() => onResponse(option)}
+                    className="bg-gray-100 hover:bg-[#005da9] hover:text-white text-gray-800 rounded-full px-4 py-3 text-sm transition-colors border border-gray-300"
+                  >
+                    {option}
+                  </Button>
+                ))}
               </div>
             </div>
           )}

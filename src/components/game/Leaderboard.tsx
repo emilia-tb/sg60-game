@@ -15,15 +15,21 @@ export const Leaderboard: React.FC<LeaderboardProps> = ({
   totalSounds
 }) => {
   const getScoreColor = (score: number) => {
-    if (score >= 8) return 'text-green-600';
+    if (score >=  8) return 'text-green-600';
     if (score >= 6) return 'text-yellow-600';
     return 'text-red-600';
+  };
+
+  const formatTime = (seconds: number) => {
+    const mins = Math.floor(seconds / 60);
+    const secs = seconds % 60;
+    return `${mins}:${secs.toString().padStart(2, '0')}`;
   };
 
   return (
     <Card className="w-full bg-white shadow-lg border-0 rounded-3xl p-4">
       <CardContent className="space-y-4">
-        <h3 className="sg-subheading text-xl text-center pt-4">Leaderboard</h3>
+        <h3 className="sg-subheading text-xl text-center pt-4">Top 5 Players</h3>
         {leaderboard.length > 0 ? (
           <div className="space-y-2">
             {leaderboard.map((player, index) => (
@@ -37,9 +43,14 @@ export const Leaderboard: React.FC<LeaderboardProps> = ({
                   <span className="font-bold text-lg w-8">#{index + 1}</span>
                   <span className="sg-body font-medium">{player.name}</span>
                 </div>
-                <span className={`font-bold text-lg ${getScoreColor(player.score)}`}>
-                  {player.score}/{totalSounds}
-                </span>
+                <div className="text-right">
+                  <span className={`font-bold text-lg ${getScoreColor(player.score)}`}>
+                    {player.score}/{totalSounds}
+                  </span>
+                  <div className="text-xs opacity-70">
+                    {formatTime(player.totalTime)}
+                  </div>
+                </div>
               </div>
             ))}
           </div>
