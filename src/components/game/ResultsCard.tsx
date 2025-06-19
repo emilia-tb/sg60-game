@@ -55,7 +55,7 @@ export const ResultsCard: React.FC<ResultsCardProps> = ({
         <div className="space-y-4 p-4 md:p-6 bg-blue-50 rounded-xl">
           <h3 className="sg-subheading text-xl text-center">Redeem your gift and hearing test</h3>
           <p className="sg-body text-center">
-            Book an appointment to redeem your free limited edition SG60 gift and hearing check at our clinic!
+            Show this page to our friendly staff to redeem your gift.
           </p>
           <div className="text-center">
             <Button onClick={() => window.open('https://www.hearingpartners.com.sg/contact-us/', '_blank')} className="sg-button rounded-full px-4 md:px-8 py-3 md:py-4 text-sm md:text-lg hover:opacity-90 transition-opacity w-full md:w-auto">
