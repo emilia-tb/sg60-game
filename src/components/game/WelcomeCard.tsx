@@ -1,20 +1,16 @@
-
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Zap, Smartphone } from 'lucide-react';
-
 interface WelcomeCardProps {
   onStart: () => void;
 }
-
-export const WelcomeCard: React.FC<WelcomeCardProps> = ({ onStart }) => {
-  return (
-    <Card className="w-full bg-white shadow-lg border-0 rounded-3xl p-2 md:p-4">
+export const WelcomeCard: React.FC<WelcomeCardProps> = ({
+  onStart
+}) => {
+  return <Card className="w-full bg-white shadow-lg border-0 rounded-3xl p-2 md:p-4">
       <CardContent className="text-center space-y-4 md:space-y-6">
-        <h2 className="sg-subheading pt-4 md:pt-8">
-          Join us in celebrating SG60 — can you guess these iconic Singapore sounds?
-        </h2>
+        <h2 className="sg-subheading pt-4 md:pt-8">Join us in celebrating SG60 — can you guess these iconic Singapore sounds? 🤔</h2>
         
         <div className="space-y-4">
           <p className="sg-body">
@@ -35,7 +31,7 @@ export const WelcomeCard: React.FC<WelcomeCardProps> = ({ onStart }) => {
                 <span className="sg-body">Works on your phone or computer</span>
               </div>
             </div>
-            <div className="text-center p-4 bg-yellow-100 border-2 border-yellow-400 rounded-xl">
+            <div className="text-center p-4 border-2 border-blue-400 rounded-xl bg-sky-100 px-0">
               <span className="sg-body font-bold text-[#005da9]">
                 Win a free limited edition SG60 gift and hearing check when you visit our clinic!
               </span>
@@ -43,13 +39,9 @@ export const WelcomeCard: React.FC<WelcomeCardProps> = ({ onStart }) => {
           </div>
         </div>
         
-        <Button
-          onClick={onStart}
-          className="sg-button rounded-full px-6 md:px-8 py-4 md:py-6 text-base md:text-lg hover:opacity-90 transition-opacity"
-        >
+        <Button onClick={onStart} className="sg-button rounded-full px-6 md:px-8 py-4 md:py-6 text-base md:text-lg hover:opacity-90 transition-opacity">
           Start Game
         </Button>
       </CardContent>
-    </Card>
-  );
+    </Card>;
 };
