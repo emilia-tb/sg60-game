@@ -99,10 +99,10 @@ export const ResultsCard: React.FC<ResultsCardProps> = ({
             <h3 className="sg-subheading text-xl text-center">Sound Breakdown</h3>
             <div className="grid gap-3">
               {results.map((result, index) => {
-                const sound = sounds.find(s => s.id === result.soundId);
+                const soundNumber = index + 1;
                 return (
                   <div key={result.soundId} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-                    <span className="sg-body font-medium">{sound?.name}</span>
+                    <span className="sg-body font-medium">Sound {soundNumber}</span>
                     <div className="text-right">
                       <span className={`font-bold ${result.correct ? 'text-green-600' : 'text-red-600'}`}>
                         {result.correct ? '✓ Correct' : '✗ Wrong'}
