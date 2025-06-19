@@ -54,70 +54,70 @@ const sounds: SoundData[] = [
     id: 1,
     name: "MRT Chime",
     description: "The familiar sound of Singapore's MRT system",
-    audioUrl: "https://489296fd-c61a-48cb-8b33-ae65b89cc1d8.lovableproject.com/SG60%20Sound%20Game%20-%20MRT.mp3",
+    audioUrl: "/SG60%20Sound%20Game%20-%20MRT.mp3",
     correctAnswer: "MRT Chime"
   },
   {
     id: 2,
     name: "Hawker Sounds",
     description: "The bustling sounds of a Singapore hawker centre",
-    audioUrl: "https://489296fd-c61a-48cb-8b33-ae65b89cc1d8.lovableproject.com/SG60%20Sound%20Game%20-%20Hawker.mp3",
+    audioUrl: "/SG60%20Sound%20Game%20-%20Hawker.mp3",
     correctAnswer: "Hawker Centre"
   },
   {
     id: 3,
     name: "Birdsong",
     description: "The sound of the iconic Koel bird",
-    audioUrl: "https://489296fd-c61a-48cb-8b33-ae65b89cc1d8.lovableproject.com/SG60%20Sound%20Game%20-%20Koel%20Bird.mp3",
+    audioUrl: "/SG60%20Sound%20Game%20-%20Koel%20Bird.mp3",
     correctAnswer: "Koel Bird"
   },
   {
     id: 4,
     name: "Lion Dance",
     description: "Traditional lion dance performance",
-    audioUrl: "https://489296fd-c61a-48cb-8b33-ae65b89cc1d8.lovableproject.com/SG60%20Sound%20Game%20-%20Lion%20Dance.mp3",
+    audioUrl: "/SG60%20Sound%20Game%20-%20Lion%20Dance.mp3",
     correctAnswer: "Lion Dance"
   },
   {
     id: 5,
     name: "National Anthem",
     description: "Singapore's national anthem",
-    audioUrl: "https://489296fd-c61a-48cb-8b33-ae65b89cc1d8.lovableproject.com/SG60%20Sound%20Game%20-%20National%20Athem.mp3",
+    audioUrl: "/SG60%20Sound%20Game%20-%20National%20Athem.mp3",
     correctAnswer: "National Anthem"
   },
   {
     id: 6,
     name: "Wet Market",
     description: "The lively sounds of a traditional wet market",
-    audioUrl: "https://489296fd-c61a-48cb-8b33-ae65b89cc1d8.lovableproject.com/SG60%20Sound%20Game%20-%20Market.mp3",
+    audioUrl: "/SG60%20Sound%20Game%20-%20Market.mp3",
     correctAnswer: "Wet Market"
   },
   {
     id: 7,
     name: "Airplane",
     description: "Aircraft sounds from Changi Airport",
-    audioUrl: "https://489296fd-c61a-48cb-8b33-ae65b89cc1d8.lovableproject.com/SG60%20Sound%20Game%20-%20Airplane.mp3",
+    audioUrl: "/SG60%20Sound%20Game%20-%20Airplane.mp3",
     correctAnswer: "Airplane"
   },
   {
     id: 8,
     name: "Bus Doors Closing",
     description: "Singapore bus door closing beep",
-    audioUrl: "https://489296fd-c61a-48cb-8b33-ae65b89cc1d8.lovableproject.com/SG60%20Sound%20Game%20-%20Bus%20doors%20closing.mp3",
+    audioUrl: "/SG60%20Sound%20Game%20-%20Bus%20doors%20closing.mp3",
     correctAnswer: "Bus Doors Closing"
   },
   {
     id: 9,
     name: "Kallang Wave",
     description: "The roar of the Kallang Wave at the stadium",
-    audioUrl: "https://489296fd-c61a-48cb-8b33-ae65b89cc1d8.lovableproject.com/SG60%20Sound%20Game%20-%20Kallang%20Wave.mp3",
+    audioUrl: "/SG60%20Sound%20Game%20-%20Kallang%20Wave.mp3",
     correctAnswer: "Kallang Wave"
   },
   {
     id: 10,
     name: "Ice Cream Cart",
     description: "The sound of an ice cream scoop",
-    audioUrl: "https://489296fd-c61a-48cb-8b33-ae65b89cc1d8.lovableproject.com/SG60%20Sound%20Game%20-%20Ice%20cream%20cart.mp3",
+    audioUrl: "/SG60%20Sound%20Game%20-%20Ice%20cream%20cart.mp3",
     correctAnswer: "Ice Cream Scoop"
   }
 ];

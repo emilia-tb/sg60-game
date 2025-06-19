@@ -122,11 +122,6 @@ export const ResultsCard: React.FC<ResultsCardProps> = ({
             <p className="sg-body text-center">
               Show this page to our friendly staff to redeem your gift.
             </p>
-            <div className="text-center">
-              <Button onClick={() => window.open('https://www.hearingpartners.com.sg/contact-us/', '_blank')} className="sg-button rounded-full px-4 md:px-8 py-3 md:py-4 text-sm md:text-lg hover:opacity-90 transition-opacity w-full md:w-auto">
-                Book an Appointment
-              </Button>
-            </div>
           </div>
 
           <div className="space-y-4 p-4 md:p-6 bg-yellow-50 rounded-xl">
@@ -142,7 +137,7 @@ export const ResultsCard: React.FC<ResultsCardProps> = ({
                     star <= rating ? 'text-yellow-500' : 'text-gray-300 hover:text-yellow-400'
                   }`}
                 >
-                  ⭐
+                  {star <= rating ? '⭐' : '☆'}
                 </button>
               ))}
             </div>
@@ -163,6 +158,7 @@ export const ResultsCard: React.FC<ResultsCardProps> = ({
         totalSounds={totalSounds} 
       />
 
+      {/* Retake Quiz Button - moved outside */}
       <Card className="w-full bg-white shadow-lg border-0 rounded-3xl p-4">
         <CardContent className="text-center pt-4">
           <Button 

@@ -14,21 +14,22 @@ export const ParticularsCard: React.FC<ParticularsCardProps> = ({
   playerName, 
   onSubmit 
 }) => {
+  const [fullName, setFullName] = useState('');
   const [phone, setPhone] = useState('');
   const [email, setEmail] = useState('');
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (phone.trim() && email.trim()) {
+    if (fullName.trim() && phone.trim() && email.trim()) {
       const particulars: PlayerParticulars = {
-        name: playerName,
+        name: fullName.trim(),
         phone: phone.trim(),
         email: email.trim(),
         rating: 0
       };
       
       // Save to CSV format (for now, just log to console)
-      const csvData = `${playerName},${phone.trim()},${email.trim()},0`;
+      const csvData = `${fullName.trim()},${phone.trim()},${email.trim()},0`;
       console.log('Player particulars CSV:', csvData);
       
       onSubmit(particulars);
@@ -47,6 +48,15 @@ export const ParticularsCard: React.FC<ParticularsCardProps> = ({
         </p>
         
         <form onSubmit={handleSubmit} className="space-y-6">
+          <Input
+            type="text"
+            value={fullName}
+            onChange={(e) => setFullName(e.target.value)}
+            placeholder="Full Name"
+            className="text-center text-lg py-6 rounded-full border-2 border-gray-300 focus:border-[#005da9] focus:ring-0"
+            required
+          />
+          
           <Input
             type="tel"
             value={phone}
@@ -67,7 +77,7 @@ export const ParticularsCard: React.FC<ParticularsCardProps> = ({
           
           <Button
             type="submit"
-            disabled={!phone.trim() || !email.trim()}
+            disabled={!fullName.trim() || !phone.trim() || !email.trim()}
             className="sg-button rounded-full px-8 py-6 text-lg hover:opacity-90 transition-opacity disabled:opacity-50"
           >
             Continue to Results
