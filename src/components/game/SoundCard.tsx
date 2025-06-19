@@ -1,5 +1,5 @@
 
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Play } from 'lucide-react';
@@ -24,7 +24,20 @@ export const SoundCard: React.FC<SoundCardProps> = ({
 }) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [hasPlayed, setHasPlayed] = useState(false);
+  const [currentTime, setCurrentTime] = useState(elapsedTime);
   const audioRef = useRef<HTMLAudioElement | null>(null);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentTime(prev => prev + 1);
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, []);
+
+  useEffect(() => {
+    setCurrentTime(elapsedTime);
+  }, [elapsedTime]);
 
   const formatTime = (seconds: number) => {
     const mins = Math.floor(seconds / 60);
@@ -100,8 +113,8 @@ export const SoundCard: React.FC<SoundCardProps> = ({
         {/* Timer in top right */}
         <div className="flex justify-between items-center">
           <div></div>
-          <div className="bg-[#005da9] text-white px-3 py-1 rounded-full text-sm font-medium">
-            {formatTime(elapsedTime)}
+          <div className="bg-[#005da9] text-white px-4 py-2 rounded-full text-lg md:text-xl font-bold">
+            {formatTime(currentTime)}
           </div>
         </div>
 
