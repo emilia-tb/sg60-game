@@ -53,7 +53,7 @@ const sounds: SoundData[] = [
     id: 1,
     name: "MRT Chime",
     description: "The familiar sound of Singapore's MRT system",
-    audioUrl: "/SG60-Sound Game-Airplane.mp3",
+    audioUrl: "/SG60 Sound Game - MRT.mp3",
     correctAnswer: "MRT Chime"
   },
   {

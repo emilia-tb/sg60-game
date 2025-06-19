@@ -1,4 +1,3 @@
-
 import React, { useState, useRef, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
@@ -86,7 +85,6 @@ export const SoundCard: React.FC<SoundCardProps> = ({
 
       // For mobile compatibility, set properties before loading
       audio.preload = 'auto';
-      audio.crossOrigin = 'anonymous';
       
       // Load the audio source
       audio.src = sound.audioUrl;
