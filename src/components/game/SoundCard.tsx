@@ -25,6 +25,7 @@ export const SoundCard: React.FC<SoundCardProps> = ({
   const [isPlaying, setIsPlaying] = useState(false);
   const [hasPlayed, setHasPlayed] = useState(false);
   const [currentTime, setCurrentTime] = useState(elapsedTime);
+  const [audioError, setAudioError] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
   useEffect(() => {
@@ -49,47 +50,68 @@ export const SoundCard: React.FC<SoundCardProps> = ({
     console.log(`Attempting to play sound: ${sound.name} from URL: ${sound.audioUrl}`);
     setIsPlaying(true);
     setHasPlayed(true);
+    setAudioError(false);
     
     try {
-      if (!audioRef.current) {
-        audioRef.current = new Audio(sound.audioUrl);
-        audioRef.current.preload = 'metadata';
-        
-        audioRef.current.onended = () => {
-          console.log(`Audio ended: ${sound.name}`);
-          setIsPlaying(false);
-        };
-        
-        audioRef.current.onerror = (error) => {
-          console.error(`Error loading audio: ${sound.audioUrl}`, error);
-          console.log('Falling back to beep sound');
-          playBeepSound();
-        };
-
-        audioRef.current.onloadstart = () => {
-          console.log(`Started loading: ${sound.audioUrl}`);
-        };
-
-        audioRef.current.oncanplay = () => {
-          console.log(`Can play: ${sound.audioUrl}`);
-        };
+      // Clean up previous audio instance
+      if (audioRef.current) {
+        audioRef.current.pause();
+        audioRef.current.currentTime = 0;
       }
+
+      // Create new audio instance for mobile compatibility
+      const audio = new Audio();
+      audioRef.current = audio;
       
-      audioRef.current.currentTime = 0;
-      const playPromise = audioRef.current.play();
+      // Set up event listeners before loading
+      audio.onended = () => {
+        console.log(`Audio ended: ${sound.name}`);
+        setIsPlaying(false);
+      };
+      
+      audio.onerror = (error) => {
+        console.error(`Error loading audio: ${sound.audioUrl}`, error);
+        console.log('Audio failed to load, using fallback beep sound');
+        setAudioError(true);
+        playBeepSound();
+      };
+
+      audio.onloadstart = () => {
+        console.log(`Started loading: ${sound.audioUrl}`);
+      };
+
+      audio.oncanplay = () => {
+        console.log(`Can play: ${sound.audioUrl}`);
+      };
+
+      // For mobile compatibility, set properties before loading
+      audio.preload = 'auto';
+      audio.crossOrigin = 'anonymous';
+      
+      // Load the audio source
+      audio.src = sound.audioUrl;
+      audio.load();
+      
+      // Play with user gesture (required for mobile)
+      const playPromise = audio.play();
       
       if (playPromise !== undefined) {
         await playPromise;
         console.log(`Successfully playing: ${sound.name}`);
+        
+        // Auto-stop after 10 seconds
+        setTimeout(() => {
+          if (audio && !audio.paused) {
+            audio.pause();
+            setIsPlaying(false);
+          }
+        }, 10000);
       }
-      
-      setTimeout(() => {
-        setIsPlaying(false);
-      }, 10000);
       
     } catch (error) {
       console.error('Error playing audio:', error);
       console.log('Audio URL that failed:', sound.audioUrl);
+      setAudioError(true);
       playBeepSound();
     }
   };
@@ -97,7 +119,15 @@ export const SoundCard: React.FC<SoundCardProps> = ({
   const playBeepSound = () => {
     console.log('Playing fallback beep sound');
     try {
-      const audioContext = new (window.AudioContext || (window as any).webkitAudioContext)();
+      // Use AudioContext for better mobile support
+      const AudioContext = window.AudioContext || (window as any).webkitAudioContext;
+      const audioContext = new AudioContext();
+      
+      // Resume context if suspended (required for mobile)
+      if (audioContext.state === 'suspended') {
+        audioContext.resume();
+      }
+      
       const oscillator = audioContext.createOscillator();
       const gainNode = audioContext.createGain();
       
@@ -113,6 +143,7 @@ export const SoundCard: React.FC<SoundCardProps> = ({
       
       setTimeout(() => {
         setIsPlaying(false);
+        audioContext.close();
       }, 2000);
     } catch (error) {
       console.error('Error playing beep sound:', error);
@@ -146,6 +177,12 @@ export const SoundCard: React.FC<SoundCardProps> = ({
             <Play size={20} />
             {isPlaying ? 'Playing...' : 'Play Sound'}
           </Button>
+
+          {audioError && (
+            <p className="text-sm text-orange-600 bg-orange-50 p-2 rounded">
+              Audio file couldn't load. Playing backup sound instead.
+            </p>
+          )}
           
           {hasPlayed && (
             <div className="space-y-4">
