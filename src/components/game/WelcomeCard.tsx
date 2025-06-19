@@ -31,7 +31,7 @@ export const WelcomeCard: React.FC<WelcomeCardProps> = ({
                 <span className="sg-body">Works on your phone or computer</span>
               </div>
             </div>
-            <div className="text-center p-4 border-2 border-blue-400 rounded-xl bg-sky-100 px-0">
+            <div className="text-center p-4 border-2 border-blue-400 rounded-xl bg-sky-100 px-[9px]">
               <span className="sg-body text-[#005da9] font-bold">Win a free hearing check and limited edition SG60 gift upon completing the game!</span>
             </div>
           </div>
