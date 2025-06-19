@@ -46,6 +46,7 @@ export const SoundCard: React.FC<SoundCardProps> = ({
   };
 
   const handlePlaySound = async () => {
+    console.log(`Attempting to play sound: ${sound.name} from URL: ${sound.audioUrl}`);
     setIsPlaying(true);
     setHasPlayed(true);
     
@@ -55,12 +56,22 @@ export const SoundCard: React.FC<SoundCardProps> = ({
         audioRef.current.preload = 'metadata';
         
         audioRef.current.onended = () => {
+          console.log(`Audio ended: ${sound.name}`);
           setIsPlaying(false);
         };
         
-        audioRef.current.onerror = () => {
-          console.error('Error loading audio:', sound.audioUrl);
+        audioRef.current.onerror = (error) => {
+          console.error(`Error loading audio: ${sound.audioUrl}`, error);
+          console.log('Falling back to beep sound');
           playBeepSound();
+        };
+
+        audioRef.current.onloadstart = () => {
+          console.log(`Started loading: ${sound.audioUrl}`);
+        };
+
+        audioRef.current.oncanplay = () => {
+          console.log(`Can play: ${sound.audioUrl}`);
         };
       }
       
@@ -69,7 +80,7 @@ export const SoundCard: React.FC<SoundCardProps> = ({
       
       if (playPromise !== undefined) {
         await playPromise;
-        console.log(`Playing sound: ${sound.name} from ${sound.audioUrl}`);
+        console.log(`Successfully playing: ${sound.name}`);
       }
       
       setTimeout(() => {
@@ -78,11 +89,13 @@ export const SoundCard: React.FC<SoundCardProps> = ({
       
     } catch (error) {
       console.error('Error playing audio:', error);
+      console.log('Audio URL that failed:', sound.audioUrl);
       playBeepSound();
     }
   };
 
   const playBeepSound = () => {
+    console.log('Playing fallback beep sound');
     try {
       const audioContext = new (window.AudioContext || (window as any).webkitAudioContext)();
       const oscillator = audioContext.createOscillator();
