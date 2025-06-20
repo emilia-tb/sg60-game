@@ -38,7 +38,7 @@ export interface PlayerParticulars {
 const soundOptions = [
   "MRT Chime",
   "Bus Doors Closing", 
-  "Koel Bird",
+  "Koel Bird ("Uwu" Bird)",
   "Hawker Centre",
   "Airplane",
   "Ice Cream Scoop",
