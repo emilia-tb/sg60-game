@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { WelcomeCard } from './game/WelcomeCard';
 import { NameCard } from './game/NameCard';
@@ -69,7 +68,7 @@ const sounds: SoundData[] = [
     name: "Birdsong",
     description: "The sound of the iconic Koel bird",
     audioUrl: "/SG60 Sound Game - Koel Bird.mp3",
-    correctAnswer: "Koel Bird"
+    correctAnswer: "Koel Bird (\"Uwu\" Bird)"
   },
   {
     id: 4,
