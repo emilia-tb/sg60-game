@@ -45,16 +45,17 @@ const soundOptions = [
   "Kallang Wave",
   "Lion Dance",
   "Wet Market",
-  "National Anthem"
+  "National Anthem",
+  "Mahjong"
 ];
 
 const sounds: SoundData[] = [
   {
     id: 1,
-    name: "Airplane",
-    description: "Aircraft sounds from Changi Airport",
-    audioUrl: "./SG60-Sound Game-Airplane.mp3",
-    correctAnswer: "Airplane"
+    name: "Mahjong",
+    description: "The sound of mahjong tiles",
+    audioUrl: "/SG60 Sound Game - Mahjong.wav",
+    correctAnswer: "Mahjong"
   },
   {
     id: 2,
