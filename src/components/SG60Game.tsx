@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { WelcomeCard } from './game/WelcomeCard';
 import { NameCard } from './game/NameCard';
@@ -38,7 +39,7 @@ export interface PlayerParticulars {
 const soundOptions = [
   "MRT Chime",
   "Bus Doors Closing", 
-  "Koel Bird ("Uwu" Bird)",
+  "Koel Bird (\"Uwu\" Bird)",
   "Hawker Centre",
   "Airplane",
   "Ice Cream Scoop",
