@@ -82,7 +82,7 @@ const sounds: SoundData[] = [
     id: 5,
     name: "National Anthem",
     description: "Singapore's national anthem",
-    audioUrl: "/SG60 Sound Game - National Athem.mp3",
+    audioUrl: "/sg60-sound-game-national-anthem.mp3",
     correctAnswer: "National Anthem"
   },
   {
