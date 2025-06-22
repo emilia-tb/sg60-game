@@ -96,7 +96,7 @@ const sounds: SoundData[] = [
     id: 7,
     name: "Airplane",
     description: "Aircraft sounds from Changi Airport",
-    audioUrl: "/SG60 Sound Game - Airplane.mp3",
+    audioUrl: "/SG60-Sound Game-Airplane.mp3",
     correctAnswer: "Airplane"
   },
   {
