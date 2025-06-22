@@ -54,28 +54,28 @@ const sounds: SoundData[] = [
     id: 1,
     name: "Mahjong",
     description: "The sound of mahjong tiles",
-    audioUrl: "/SG60 Sound Game - Mahjong.wav",
+    audioUrl: "/sg60-sound-game-mahjong.wav",
     correctAnswer: "Mahjong"
   },
   {
     id: 2,
     name: "Hawker Sounds",
     description: "The bustling sounds of a Singapore hawker centre",
-    audioUrl: "/SG60 Sound Game - Hawker.mp3",
+    audioUrl: "/sg60-sound-game-hawker.mp3",
     correctAnswer: "Hawker Centre"
   },
   {
     id: 3,
     name: "Birdsong",
     description: "The sound of the iconic Koel bird",
-    audioUrl: "/SG60 Sound Game - Koel Bird.mp3",
+    audioUrl: "/sg60-sound-game-koel-bird.mp3",
     correctAnswer: "Koel Bird (\"Uwu\" Bird)"
   },
   {
     id: 4,
     name: "Lion Dance",
     description: "Traditional lion dance performance",
-    audioUrl: "/SG60 Sound Game - Lion Dance.mp3",
+    audioUrl: "/sg60-sound-game-lion-dance.mp3",
     correctAnswer: "Lion Dance"
   },
   {
@@ -89,7 +89,7 @@ const sounds: SoundData[] = [
     id: 6,
     name: "Wet Market",
     description: "The lively sounds of a traditional wet market",
-    audioUrl: "/SG60 Sound Game - Market.mp3",
+    audioUrl: "/sg60-sound-game-market.mp3",
     correctAnswer: "Wet Market"
   },
   {
@@ -103,21 +103,21 @@ const sounds: SoundData[] = [
     id: 8,
     name: "Bus Doors Closing",
     description: "Singapore bus door closing beep",
-    audioUrl: "/SG60 Sound Game - Bus doors closing.mp3",
+    audioUrl: "/sg60-sound-game-bus-doors-closing.mp3",
     correctAnswer: "Bus Doors Closing"
   },
   {
     id: 9,
     name: "Kallang Wave",
     description: "The roar of the Kallang Wave at the stadium",
-    audioUrl: "/SG60 Sound Game - Kallang Wave.mp3",
+    audioUrl: "/sg60-sound-game-kallang-wave.mp3",
     correctAnswer: "Kallang Wave"
   },
   {
     id: 10,
     name: "Ice Cream Cart",
     description: "The sound of an ice cream scoop",
-    audioUrl: "/SG60 Sound Game - Ice cream cart.mp3",
+    audioUrl: "/sg60-sound-game-ice-cream-cart.mp3",
     correctAnswer: "Ice Cream Scoop"
   }
 ];
