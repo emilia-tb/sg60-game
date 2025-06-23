@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { WelcomeCard } from './game/WelcomeCard';
 import { NameCard } from './game/NameCard';
@@ -40,7 +41,6 @@ const soundOptions = [
   "Bus Doors Closing", 
   "Koel Bird (\"Uwu\" Bird)",
   "Hawker Centre",
-  "Airplane",
   "Ice Cream Scoop",
   "Kallang Wave",
   "Lion Dance",
@@ -94,10 +94,10 @@ const sounds: SoundData[] = [
   },
   {
     id: 7,
-    name: "Airplane",
-    description: "Aircraft sounds from Changi Airport",
-    audioUrl: "/sg60-sound-game-airplane.mp3",
-    correctAnswer: "Airplane"
+    name: "MRT Chime",
+    description: "Singapore MRT door closing chime",
+    audioUrl: "/sg60-sound-game-mrt.mp3",
+    correctAnswer: "MRT Chime"
   },
   {
     id: 8,
