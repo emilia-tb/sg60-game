@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Leaderboard } from './Leaderboard';
-import { Download } from 'lucide-react';
 import type { PlayerResult, SoundData, Player, PlayerParticulars } from '../SG60Game';
 
 interface ResultsCardProps {
@@ -75,36 +74,6 @@ export const ResultsCard: React.FC<ResultsCardProps> = ({
       
       console.log('Updated player data:', newParticipant);
     }
-  };
-
-  const exportToCSV = () => {
-    const storedParticipants = JSON.parse(localStorage.getItem('sg60-participants') || '[]');
-    
-    if (storedParticipants.length === 0) {
-      alert('No participant data available to export.');
-      return;
-    }
-
-    // Create CSV header
-    const csvHeader = 'Name,Phone Number,Email Address,Star Rating,Score,Total Time (seconds),Timestamp\n';
-    
-    // Create CSV rows
-    const csvRows = storedParticipants.map((participant: any) => {
-      return `"${participant.name}","${participant.phone}","${participant.email}",${participant.rating},${participant.score || 0},${participant.totalTime || 0},"${participant.timestamp || ''}"`;
-    }).join('\n');
-    
-    const csvContent = csvHeader + csvRows;
-    
-    // Create and download the file
-    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
-    const link = document.createElement('a');
-    const url = URL.createObjectURL(blob);
-    link.setAttribute('href', url);
-    link.setAttribute('download', `sg60-participants-${new Date().toISOString().split('T')[0]}.csv`);
-    link.style.visibility = 'hidden';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
   };
 
   const getScoreColor = (score: number) => {
@@ -187,22 +156,6 @@ export const ResultsCard: React.FC<ResultsCardProps> = ({
                 Thank you for your feedback! ({rating} star{rating !== 1 ? 's' : ''})
               </p>
             )}
-          </div>
-
-          <div className="space-y-4 p-4 md:p-6 bg-green-50 rounded-xl">
-            <h3 className="sg-subheading text-xl text-center">Export Participant Data</h3>
-            <p className="sg-body text-center text-sm">
-              Download all participant information as CSV file
-            </p>
-            <div className="flex justify-center">
-              <Button 
-                onClick={exportToCSV}
-                className="bg-green-600 hover:bg-green-700 text-white rounded-full px-6 py-3 text-sm flex items-center gap-2"
-              >
-                <Download className="w-4 h-4" />
-                Export CSV
-              </Button>
-            </div>
           </div>
         </CardContent>
       </Card>
