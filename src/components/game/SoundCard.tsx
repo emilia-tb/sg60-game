@@ -206,6 +206,9 @@ export const SoundCard: React.FC<SoundCardProps> = ({
                     {option === "Koel Bird (\"Uwu\" Bird)" && (
                       <span className="text-xs mt-0.5 opacity-70 leading-tight">噪鹃鸟 ("呜呜"鸟)</span>
                     )}
+                    {option === "Hawker Centre" && (
+                      <span className="text-xs mt-0.5 opacity-70 leading-tight">小贩中心</span>
+                    )}
                   </Button>
                 ))}
               </div>
