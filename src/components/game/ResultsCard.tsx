@@ -3,6 +3,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Leaderboard } from './Leaderboard';
 import type { PlayerResult, SoundData, Player, PlayerParticulars } from '../SG60Game';
+
 interface ResultsCardProps {
   playerName: string;
   results: PlayerResult[];
@@ -11,6 +12,7 @@ interface ResultsCardProps {
   playerParticulars: PlayerParticulars | null;
   onRetakeQuiz: () => void;
 }
+
 export const ResultsCard: React.FC<ResultsCardProps> = ({
   playerName,
   results,
@@ -67,7 +69,8 @@ export const ResultsCard: React.FC<ResultsCardProps> = ({
     if (score >= 6) return 'text-yellow-600';
     return 'text-red-600';
   };
-  return <div className="space-y-6">
+  return (
+    <div className="space-y-6">
       <Card className="w-full bg-white shadow-lg border-0 rounded-3xl p-4 md:p-8">
         <CardContent className="space-y-6 md:space-y-8">
           <div className="text-center space-y-4">
@@ -131,15 +134,6 @@ export const ResultsCard: React.FC<ResultsCardProps> = ({
       </Card>
 
       <Leaderboard leaderboard={leaderboard.slice(0, 5)} playerName={playerName} totalSounds={totalSounds} />
-
-      <Card className="w-full bg-white shadow-lg border-0 rounded-3xl p-4">
-        <CardContent className="text-center pt-4">
-          <Button onClick={onRetakeQuiz} style={{
-          backgroundColor: '#005da9'
-        }} className="text-white rounded-full px-4 md:px-8 py-3 md:py-4 text-sm md:text-lg hover:opacity-90 transition-opacity w-full md:w-auto">
-            Retake the quiz
-          </Button>
-        </CardContent>
-      </Card>
-    </div>;
+    </div>
+  );
 };
