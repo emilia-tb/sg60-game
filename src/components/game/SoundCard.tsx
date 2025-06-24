@@ -197,34 +197,34 @@ export const SoundCard: React.FC<SoundCardProps> = ({
                   >
                     <span className="leading-tight">{option}</span>
                     {option === "MRT Chime" && (
-                      <span className="text-xs mt-0.5 opacity-70 leading-tight">地铁铃声</span>
+                      <span className="text-xs md:text-sm mt-0.5 opacity-70 leading-tight">地铁铃声</span>
                     )}
                     {option === "Bus Doors Closing" && (
-                      <span className="text-xs mt-0.5 opacity-70 leading-tight">巴士关门提示</span>
+                      <span className="text-xs md:text-sm mt-0.5 opacity-70 leading-tight">巴士关门提示</span>
                     )}
                     {option === "Koel Bird (\"Uwu\" Bird)" && (
-                      <span className="text-xs mt-0.5 opacity-70 leading-tight">噪鹃鸟 ("呜呜"鸟)</span>
+                      <span className="text-xs md:text-sm mt-0.5 opacity-70 leading-tight">噪鹃鸟 ("呜呜"鸟)</span>
                     )}
                     {option === "Hawker Centre" && (
-                      <span className="text-xs mt-0.5 opacity-70 leading-tight">小贩中心</span>
+                      <span className="text-xs md:text-sm mt-0.5 opacity-70 leading-tight">小贩中心</span>
                     )}
                     {option === "Ice Cream Scoop" && (
-                      <span className="text-xs mt-0.5 opacity-70 leading-tight">冰淇淋勺</span>
+                      <span className="text-xs md:text-sm mt-0.5 opacity-70 leading-tight">冰淇淋勺</span>
                     )}
                     {option === "Kallang Wave" && (
-                      <span className="text-xs mt-0.5 opacity-70 leading-tight">加冷人浪</span>
+                      <span className="text-xs md:text-sm mt-0.5 opacity-70 leading-tight">加冷人浪</span>
                     )}
                     {option === "Lion Dance" && (
-                      <span className="text-xs mt-0.5 opacity-70 leading-tight">舞狮</span>
+                      <span className="text-xs md:text-sm mt-0.5 opacity-70 leading-tight">舞狮</span>
                     )}
                     {option === "Wet Market" && (
-                      <span className="text-xs mt-0.5 opacity-70 leading-tight">巴杀</span>
+                      <span className="text-xs md:text-sm mt-0.5 opacity-70 leading-tight">巴杀</span>
                     )}
                     {option === "National Anthem" && (
-                      <span className="text-xs mt-0.5 opacity-70 leading-tight">国歌</span>
+                      <span className="text-xs md:text-sm mt-0.5 opacity-70 leading-tight">国歌</span>
                     )}
                     {option === "Mahjong" && (
-                      <span className="text-xs mt-0.5 opacity-70 leading-tight">麻将</span>
+                      <span className="text-xs md:text-sm mt-0.5 opacity-70 leading-tight">麻将</span>
                     )}
                   </Button>
                 ))}
