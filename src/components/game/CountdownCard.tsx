@@ -11,22 +11,33 @@ export const CountdownCard: React.FC<CountdownCardProps> = ({ onComplete }) => {
   const audioRef = useRef<HTMLAudioElement>(null);
 
   useEffect(() => {
-    // Preload and prepare audio immediately
+    // Preload and prepare audio immediately with aggressive loading
     if (audioRef.current) {
-      audioRef.current.load();
-      audioRef.current.volume = 1.0;
+      const audio = audioRef.current;
+      audio.preload = 'auto';
+      audio.load();
+      audio.volume = 1.0;
       
-      // Set up event listeners
-      audioRef.current.oncanplaythrough = () => {
-        console.log('Audio preloaded and ready to play');
-        // Play immediately when ready
-        if (audioRef.current) {
-          audioRef.current.play().catch(console.error);
-        }
+      // Set up event listeners for immediate playback
+      const handleCanPlay = () => {
+        console.log('Countdown audio preloaded and ready to play');
+        // Start playing immediately when ready
+        audio.play().catch(console.error);
       };
 
-      audioRef.current.onerror = (error) => {
+      const handleError = (error: any) => {
         console.error('Error loading countdown audio:', error);
+      };
+
+      audio.addEventListener('canplaythrough', handleCanPlay);
+      audio.addEventListener('error', handleError);
+
+      // Try to load immediately
+      audio.load();
+
+      return () => {
+        audio.removeEventListener('canplaythrough', handleCanPlay);
+        audio.removeEventListener('error', handleError);
       };
     }
   }, []);
