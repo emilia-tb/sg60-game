@@ -21,7 +21,7 @@ export const NameCard: React.FC<NameCardProps> = ({
           What is your name?
         </h2>
         
-        <p className="sg-body">This will be used for our leaderboard. Speed counts—the top 5 fastest players get on the leaderboard!</p>
+        <p className="sg-body">This will be used for our leaderboard. The top 5 players with the highest scores and fastest times will be ranked!</p>
         
         <form onSubmit={handleSubmit} className="space-y-6">
           <Input type="text" value={name} onChange={e => setName(e.target.value)} placeholder="Enter your name" className="text-center text-lg py-6 rounded-full border-2 border-gray-300 focus:border-[var(--sg-button)] focus:ring-0" required />
