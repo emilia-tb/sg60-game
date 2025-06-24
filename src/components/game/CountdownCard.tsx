@@ -11,9 +11,23 @@ export const CountdownCard: React.FC<CountdownCardProps> = ({ onComplete }) => {
   const audioRef = useRef<HTMLAudioElement>(null);
 
   useEffect(() => {
-    // Play background music when component mounts
+    // Preload and prepare audio immediately
     if (audioRef.current) {
-      audioRef.current.play().catch(console.error);
+      audioRef.current.load();
+      audioRef.current.volume = 1.0;
+      
+      // Set up event listeners
+      audioRef.current.oncanplaythrough = () => {
+        console.log('Audio preloaded and ready to play');
+        // Play immediately when ready
+        if (audioRef.current) {
+          audioRef.current.play().catch(console.error);
+        }
+      };
+
+      audioRef.current.onerror = (error) => {
+        console.error('Error loading countdown audio:', error);
+      };
     }
   }, []);
 
@@ -52,6 +66,7 @@ export const CountdownCard: React.FC<CountdownCardProps> = ({ onComplete }) => {
           src="/sg60-sound-game-start-sound.mp3"
           loop
           preload="auto"
+          playsInline
         />
       </CardContent>
     </Card>
