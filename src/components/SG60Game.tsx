@@ -80,10 +80,10 @@ const sounds: SoundData[] = [
   },
   {
     id: 5,
-    name: "National Anthem",
-    description: "Singapore's national anthem",
-    audioUrl: "/sg60-sound-game-national-anthem.mp3",
-    correctAnswer: "National Anthem"
+    name: "Ice Cream Cart",
+    description: "The sound of an ice cream scoop",
+    audioUrl: "/sg60-sound-game-ice-cream-cart.mp3",
+    correctAnswer: "Ice Cream Scoop"
   },
   {
     id: 6,
@@ -115,10 +115,10 @@ const sounds: SoundData[] = [
   },
   {
     id: 10,
-    name: "Ice Cream Cart",
-    description: "The sound of an ice cream scoop",
-    audioUrl: "/sg60-sound-game-ice-cream-cart.mp3",
-    correctAnswer: "Ice Cream Scoop"
+    name: "National Anthem",
+    description: "Singapore's national anthem",
+    audioUrl: "/sg60-sound-game-national-anthem.mp3",
+    correctAnswer: "National Anthem"
   }
 ];
 
