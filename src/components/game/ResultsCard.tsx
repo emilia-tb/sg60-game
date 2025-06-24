@@ -26,6 +26,7 @@ export const ResultsCard: React.FC<ResultsCardProps> = ({
   const [hasRated, setHasRated] = useState(false);
   const score = results.filter(result => result.correct).length;
   const totalSounds = sounds.length;
+
   useEffect(() => {
     // Load leaderboard and add current player
     const storedLeaderboard = JSON.parse(localStorage.getItem('sg60-leaderboard') || '[]');
@@ -42,6 +43,7 @@ export const ResultsCard: React.FC<ResultsCardProps> = ({
     setLeaderboard(updatedLeaderboard);
     localStorage.setItem('sg60-leaderboard', JSON.stringify(updatedLeaderboard));
   }, [playerName, score, totalTime]);
+
   const handleRating = (stars: number) => {
     setRating(stars);
     setHasRated(true);
@@ -64,11 +66,29 @@ export const ResultsCard: React.FC<ResultsCardProps> = ({
       console.log('Updated player data:', newParticipant);
     }
   };
+
   const getScoreColor = (score: number) => {
     if (score >= 8) return 'text-green-600';
     if (score >= 6) return 'text-yellow-600';
     return 'text-red-600';
   };
+
+  const getChineseTranslation = (answer: string) => {
+    const translations: { [key: string]: string } = {
+      "MRT Chime": "地铁铃声",
+      "Bus Doors Closing": "巴士关门提示",
+      "Koel Bird (\"Uwu\" Bird)": "噪鹃鸟 (\"呜呜\"鸟)",
+      "Hawker Centre": "小贩中心",
+      "Ice Cream Scoop": "冰淇淋勺",
+      "Kallang Wave": "加冷人浪",
+      "Lion Dance": "舞狮",
+      "Wet Market": "巴杀",
+      "National Anthem": "国歌",
+      "Mahjong": "麻将"
+    };
+    return translations[answer] || '';
+  };
+
   return (
     <div className="space-y-6">
       <Card className="w-full bg-white shadow-lg border-0 rounded-3xl p-4 md:p-8">
@@ -96,6 +116,7 @@ export const ResultsCard: React.FC<ResultsCardProps> = ({
             <div className="grid gap-3">
               {results.map((result, index) => {
               const soundNumber = index + 1;
+              const chineseTranslation = getChineseTranslation(result.selectedAnswer);
               return <div key={result.soundId} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
                     <span className="sg-body font-medium">Sound {soundNumber}</span>
                     <div className="text-right">
@@ -104,6 +125,11 @@ export const ResultsCard: React.FC<ResultsCardProps> = ({
                       </span>
                       <div className="text-xs opacity-70">
                         Your answer: {result.selectedAnswer}
+                        {chineseTranslation && (
+                          <div className="text-xs opacity-60">
+                            {chineseTranslation}
+                          </div>
+                        )}
                       </div>
                     </div>
                   </div>;
