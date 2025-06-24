@@ -188,12 +188,12 @@ export const SoundCard: React.FC<SoundCardProps> = ({
               <p className="sg-body font-medium">
                 What sound did you hear?
               </p>
-              <div className="grid grid-cols-2 gap-3">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                 {soundOptions.map((option) => (
                   <Button
                     key={option}
                     onClick={() => onResponse(option)}
-                    className="bg-gray-100 hover:bg-[#005da9] hover:text-white text-gray-800 rounded-full px-4 py-4 text-sm transition-colors border border-gray-300 flex flex-col items-center min-h-[80px]"
+                    className="bg-gray-100 hover:bg-[#005da9] hover:text-white text-gray-800 rounded-full px-6 py-4 text-sm transition-colors border border-gray-300 flex flex-col items-center min-h-[80px] w-full"
                   >
                     <span className="leading-tight">{option}</span>
                     {option === "MRT Chime" && (
