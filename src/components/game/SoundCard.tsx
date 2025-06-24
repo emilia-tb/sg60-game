@@ -211,6 +211,9 @@ export const SoundCard: React.FC<SoundCardProps> = ({
                     {option === "Ice Cream Scoop" && (
                       <span className="text-xs mt-0.5 opacity-70 leading-tight">冰淇淋勺</span>
                     )}
+                    {option === "Kallang Wave" && (
+                      <span className="text-xs mt-0.5 opacity-70 leading-tight">加冷人浪</span>
+                    )}
                   </Button>
                 ))}
               </div>
