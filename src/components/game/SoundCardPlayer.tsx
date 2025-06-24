@@ -1,5 +1,5 @@
 
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Play } from 'lucide-react';
 import type { SoundData } from '../SG60Game';
@@ -12,7 +12,44 @@ interface SoundCardPlayerProps {
 export const SoundCardPlayer: React.FC<SoundCardPlayerProps> = ({ sound, onPlayComplete }) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [audioError, setAudioError] = useState(false);
+  const [isPreloaded, setIsPreloaded] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
+
+  // Preload audio when component mounts
+  useEffect(() => {
+    const preloadAudio = () => {
+      try {
+        const audio = new Audio();
+        audioRef.current = audio;
+        
+        audio.oncanplaythrough = () => {
+          console.log('Audio preloaded and ready to play');
+          setIsPreloaded(true);
+        };
+        
+        audio.onerror = (error) => {
+          console.error(`Error preloading audio: ${sound.audioUrl}`, error);
+          setAudioError(true);
+        };
+
+        audio.preload = 'auto';
+        audio.src = sound.audioUrl;
+        audio.load();
+      } catch (error) {
+        console.error('Error setting up audio preload:', error);
+        setAudioError(true);
+      }
+    };
+
+    preloadAudio();
+
+    return () => {
+      if (audioRef.current) {
+        audioRef.current.pause();
+        audioRef.current = null;
+      }
+    };
+  }, [sound.audioUrl]);
 
   const handlePlaySound = async () => {
     console.log(`Attempting to play sound: ${sound.name} from URL: ${sound.audioUrl}`);
@@ -21,45 +58,28 @@ export const SoundCardPlayer: React.FC<SoundCardPlayerProps> = ({ sound, onPlayC
     setAudioError(false);
     
     try {
-      // Clean up previous audio instance
-      if (audioRef.current) {
-        audioRef.current.pause();
-        audioRef.current.currentTime = 0;
+      const audio = audioRef.current;
+      
+      if (!audio) {
+        throw new Error('Audio not initialized');
       }
 
-      // Create new audio instance for mobile compatibility
-      const audio = new Audio();
-      audioRef.current = audio;
+      // Reset audio to beginning
+      audio.currentTime = 0;
       
-      // Set up event listeners before loading
+      // Set up event listeners for this play session
       audio.onended = () => {
         console.log(`Audio ended: ${sound.name}`);
         setIsPlaying(false);
       };
       
       audio.onerror = (error) => {
-        console.error(`Error loading audio: ${sound.audioUrl}`, error);
-        console.log('Audio failed to load, using fallback beep sound');
+        console.error(`Error playing audio: ${sound.audioUrl}`, error);
         setAudioError(true);
         playBeepSound();
       };
 
-      audio.onloadstart = () => {
-        console.log(`Started loading: ${sound.audioUrl}`);
-      };
-
-      audio.oncanplay = () => {
-        console.log(`Can play: ${sound.audioUrl}`);
-      };
-
-      // For mobile compatibility, set properties before loading
-      audio.preload = 'auto';
-      
-      // Load the audio source
-      audio.src = sound.audioUrl;
-      audio.load();
-      
-      // Play with user gesture (required for mobile)
+      // Play immediately since audio is preloaded
       const playPromise = audio.play();
       
       if (playPromise !== undefined) {
@@ -77,7 +97,6 @@ export const SoundCardPlayer: React.FC<SoundCardPlayerProps> = ({ sound, onPlayC
       
     } catch (error) {
       console.error('Error playing audio:', error);
-      console.log('Audio URL that failed:', sound.audioUrl);
       setAudioError(true);
       playBeepSound();
     }
@@ -86,11 +105,9 @@ export const SoundCardPlayer: React.FC<SoundCardPlayerProps> = ({ sound, onPlayC
   const playBeepSound = () => {
     console.log('Playing fallback beep sound');
     try {
-      // Use AudioContext for better mobile support
       const AudioContext = window.AudioContext || (window as any).webkitAudioContext;
       const audioContext = new AudioContext();
       
-      // Resume context if suspended (required for mobile)
       if (audioContext.state === 'suspended') {
         audioContext.resume();
       }
@@ -122,11 +139,11 @@ export const SoundCardPlayer: React.FC<SoundCardPlayerProps> = ({ sound, onPlayC
     <div className="space-y-4 md:space-y-6 text-center">
       <Button
         onClick={handlePlaySound}
-        disabled={isPlaying}
+        disabled={isPlaying || !isPreloaded}
         className="sg-button rounded-full px-6 md:px-8 py-4 md:py-6 text-base md:text-lg hover:opacity-90 transition-opacity disabled:opacity-50 flex items-center gap-3 mx-auto"
       >
         <Play size={20} />
-        {isPlaying ? 'Playing...' : 'Play Sound'}
+        {isPlaying ? 'Playing...' : !isPreloaded ? 'Loading...' : 'Play Sound'}
       </Button>
 
       {audioError && (
