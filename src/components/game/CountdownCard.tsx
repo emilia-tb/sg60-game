@@ -8,26 +8,44 @@ interface CountdownCardProps {
 
 export const CountdownCard: React.FC<CountdownCardProps> = ({ onComplete }) => {
   const [count, setCount] = useState(3);
+  const [isAudioReady, setIsAudioReady] = useState(false);
   const audioRef = useRef<HTMLAudioElement>(null);
 
   useEffect(() => {
-    // Preload and prepare audio immediately
+    // Aggressively preload and prepare audio immediately
     if (audioRef.current) {
-      audioRef.current.load();
-      audioRef.current.volume = 1.0;
+      const audio = audioRef.current;
+      
+      // Set audio properties for immediate playback
+      audio.volume = 1.0;
+      audio.loop = true;
+      audio.preload = 'auto';
       
       // Set up event listeners
-      audioRef.current.oncanplaythrough = () => {
-        console.log('Audio preloaded and ready to play');
-        // Play immediately when ready
-        if (audioRef.current) {
-          audioRef.current.play().catch(console.error);
+      audio.oncanplaythrough = () => {
+        console.log('Countdown audio preloaded and ready to play');
+        setIsAudioReady(true);
+        
+        // Try to play immediately when ready
+        audio.play().catch((error) => {
+          console.log('Auto-play blocked, will play on user interaction:', error);
+        });
+      };
+
+      audio.onloadeddata = () => {
+        console.log('Audio data loaded');
+        // Try to play as soon as data is loaded
+        if (audio.readyState >= 2) {
+          audio.play().catch(console.error);
         }
       };
 
-      audioRef.current.onerror = (error) => {
+      audio.onerror = (error) => {
         console.error('Error loading countdown audio:', error);
       };
+
+      // Force immediate load
+      audio.load();
     }
   }, []);
 
@@ -64,9 +82,9 @@ export const CountdownCard: React.FC<CountdownCardProps> = ({ onComplete }) => {
         <audio
           ref={audioRef}
           src="/sg60-sound-game-start-sound.mp3"
-          loop
           preload="auto"
           playsInline
+          crossOrigin="anonymous"
         />
       </CardContent>
     </Card>
