@@ -15,75 +15,41 @@ export const SoundCardPlayer: React.FC<SoundCardPlayerProps> = ({ sound, onPlayC
   const [isPreloaded, setIsPreloaded] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
-  // Aggressive preloading with immediate audio setup
+  // Preload audio when component mounts
   useEffect(() => {
     const preloadAudio = () => {
       try {
         const audio = new Audio();
         audioRef.current = audio;
         
-        // Set audio properties for faster loading
-        audio.preload = 'auto';
-        audio.crossOrigin = 'anonymous';
-        audio.volume = 1.0;
-        
-        const handleCanPlayThrough = () => {
-          console.log(`Audio preloaded and ready: ${sound.name}`);
+        audio.oncanplaythrough = () => {
+          console.log('Audio preloaded and ready to play');
           setIsPreloaded(true);
         };
         
-        const handleError = (error: any) => {
+        audio.onerror = (error) => {
           console.error(`Error preloading audio: ${sound.audioUrl}`, error);
           setAudioError(true);
         };
 
-        const handleLoadStart = () => {
-          console.log(`Starting to load: ${sound.name}`);
-        };
-
-        const handleProgress = () => {
-          if (audio.buffered.length > 0) {
-            const bufferedEnd = audio.buffered.end(audio.buffered.length - 1);
-            const duration = audio.duration;
-            if (duration > 0) {
-              const percentLoaded = (bufferedEnd / duration) * 100;
-              console.log(`Loading progress for ${sound.name}: ${percentLoaded.toFixed(1)}%`);
-            }
-          }
-        };
-
-        // Add event listeners
-        audio.addEventListener('canplaythrough', handleCanPlayThrough);
-        audio.addEventListener('error', handleError);
-        audio.addEventListener('loadstart', handleLoadStart);
-        audio.addEventListener('progress', handleProgress);
-
-        // Start loading immediately
+        audio.preload = 'auto';
         audio.src = sound.audioUrl;
         audio.load();
-
-        return () => {
-          audio.removeEventListener('canplaythrough', handleCanPlayThrough);
-          audio.removeEventListener('error', handleError);
-          audio.removeEventListener('loadstart', handleLoadStart);
-          audio.removeEventListener('progress', handleProgress);
-        };
       } catch (error) {
         console.error('Error setting up audio preload:', error);
         setAudioError(true);
       }
     };
 
-    const cleanup = preloadAudio();
+    preloadAudio();
 
     return () => {
-      if (cleanup) cleanup();
       if (audioRef.current) {
         audioRef.current.pause();
         audioRef.current = null;
       }
     };
-  }, [sound.audioUrl, sound.name]);
+  }, [sound.audioUrl]);
 
   const handlePlaySound = async () => {
     console.log(`Attempting to play sound: ${sound.name} from URL: ${sound.audioUrl}`);
@@ -102,20 +68,16 @@ export const SoundCardPlayer: React.FC<SoundCardPlayerProps> = ({ sound, onPlayC
       audio.currentTime = 0;
       
       // Set up event listeners for this play session
-      const handleEnded = () => {
+      audio.onended = () => {
         console.log(`Audio ended: ${sound.name}`);
         setIsPlaying(false);
       };
       
-      const handlePlayError = (error: any) => {
+      audio.onerror = (error) => {
         console.error(`Error playing audio: ${sound.audioUrl}`, error);
         setAudioError(true);
-        setIsPlaying(false);
         playBeepSound();
       };
-
-      audio.addEventListener('ended', handleEnded);
-      audio.addEventListener('error', handlePlayError);
 
       // Play immediately since audio is preloaded
       const playPromise = audio.play();
@@ -130,16 +92,12 @@ export const SoundCardPlayer: React.FC<SoundCardPlayerProps> = ({ sound, onPlayC
             audio.pause();
             setIsPlaying(false);
           }
-          // Clean up listeners
-          audio.removeEventListener('ended', handleEnded);
-          audio.removeEventListener('error', handlePlayError);
         }, 10000);
       }
       
     } catch (error) {
       console.error('Error playing audio:', error);
       setAudioError(true);
-      setIsPlaying(false);
       playBeepSound();
     }
   };
