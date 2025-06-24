@@ -1,3 +1,4 @@
+
 import React, { useState, useRef, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
@@ -192,9 +193,12 @@ export const SoundCard: React.FC<SoundCardProps> = ({
                   <Button
                     key={option}
                     onClick={() => onResponse(option)}
-                    className="bg-gray-100 hover:bg-[#005da9] hover:text-white text-gray-800 rounded-full px-4 py-3 text-sm transition-colors border border-gray-300"
+                    className="bg-gray-100 hover:bg-[#005da9] hover:text-white text-gray-800 rounded-full px-4 py-3 text-sm transition-colors border border-gray-300 flex flex-col items-center"
                   >
-                    {option}
+                    <span>{option}</span>
+                    {option === "MRT Chime" && (
+                      <span className="text-xs mt-1 opacity-70">地铁铃声</span>
+                    )}
                   </Button>
                 ))}
               </div>
