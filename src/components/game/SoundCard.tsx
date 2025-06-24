@@ -1,4 +1,3 @@
-
 import React, { useState, useRef, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
@@ -213,6 +212,9 @@ export const SoundCard: React.FC<SoundCardProps> = ({
                     )}
                     {option === "Kallang Wave" && (
                       <span className="text-xs mt-0.5 opacity-70 leading-tight">加冷人浪</span>
+                    )}
+                    {option === "Mahjong" && (
+                      <span className="text-xs mt-0.5 opacity-70 leading-tight">麻将</span>
                     )}
                   </Button>
                 ))}
