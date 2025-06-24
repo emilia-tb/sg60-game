@@ -1,4 +1,5 @@
 
+
 import React, { useState, useRef, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
@@ -193,7 +194,7 @@ export const SoundCard: React.FC<SoundCardProps> = ({
                   <Button
                     key={option}
                     onClick={() => onResponse(option)}
-                    className="bg-gray-100 hover:bg-[#005da9] hover:text-white text-gray-800 rounded-full px-4 py-4 text-sm transition-colors border border-gray-300 flex flex-col items-center min-h-[60px]"
+                    className="bg-gray-100 hover:bg-[#005da9] hover:text-white text-gray-800 rounded-full px-4 py-4 text-sm transition-colors border border-gray-300 flex flex-col items-center min-h-[80px]"
                   >
                     <span className="leading-tight">{option}</span>
                     {option === "MRT Chime" && (
@@ -201,6 +202,9 @@ export const SoundCard: React.FC<SoundCardProps> = ({
                     )}
                     {option === "Bus Doors Closing" && (
                       <span className="text-xs mt-0.5 opacity-70 leading-tight">巴士关门提示</span>
+                    )}
+                    {option === "Koel Bird (\"Uwu\" Bird)" && (
+                      <span className="text-xs mt-0.5 opacity-70 leading-tight">噪鹃鸟 ("呜呜"鸟)</span>
                     )}
                   </Button>
                 ))}
