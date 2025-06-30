@@ -3,7 +3,6 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Leaderboard } from './Leaderboard';
 import type { PlayerResult, SoundData, Player, PlayerParticulars } from '../SG60Game';
-
 interface ResultsCardProps {
   playerName: string;
   results: PlayerResult[];
@@ -12,7 +11,6 @@ interface ResultsCardProps {
   playerParticulars: PlayerParticulars | null;
   onRetakeQuiz: () => void;
 }
-
 export const ResultsCard: React.FC<ResultsCardProps> = ({
   playerName,
   results,
@@ -26,7 +24,6 @@ export const ResultsCard: React.FC<ResultsCardProps> = ({
   const [hasRated, setHasRated] = useState(false);
   const score = results.filter(result => result.correct).length;
   const totalSounds = sounds.length;
-
   useEffect(() => {
     // Load leaderboard and add current player
     const storedLeaderboard = JSON.parse(localStorage.getItem('sg60-leaderboard') || '[]');
@@ -43,7 +40,6 @@ export const ResultsCard: React.FC<ResultsCardProps> = ({
     setLeaderboard(updatedLeaderboard);
     localStorage.setItem('sg60-leaderboard', JSON.stringify(updatedLeaderboard));
   }, [playerName, score, totalTime]);
-
   const handleRating = (stars: number) => {
     setRating(stars);
     setHasRated(true);
@@ -66,15 +62,15 @@ export const ResultsCard: React.FC<ResultsCardProps> = ({
       console.log('Updated player data:', newParticipant);
     }
   };
-
   const getScoreColor = (score: number) => {
     if (score >= 8) return 'text-green-600';
     if (score >= 6) return 'text-yellow-600';
     return 'text-red-600';
   };
-
   const getChineseTranslation = (answer: string) => {
-    const translations: { [key: string]: string } = {
+    const translations: {
+      [key: string]: string;
+    } = {
       "MRT Chime": "地铁铃声",
       "Bus Doors Closing": "巴士关门提示",
       "Koel Bird (\"Uwu\" Bird)": "噪鹃鸟 (\"呜呜\"鸟)",
@@ -88,9 +84,7 @@ export const ResultsCard: React.FC<ResultsCardProps> = ({
     };
     return translations[answer] || '';
   };
-
-  return (
-    <div className="space-y-6">
+  return <div className="space-y-6">
       <Card className="w-full bg-white shadow-lg border-0 rounded-3xl p-4 md:p-8">
         <CardContent className="space-y-6 md:space-y-8">
           <div className="text-center space-y-4">
@@ -125,11 +119,9 @@ export const ResultsCard: React.FC<ResultsCardProps> = ({
                       </span>
                       <div className="text-xs opacity-70">
                         Your answer: {result.selectedAnswer}
-                        {chineseTranslation && (
-                          <div className="text-xs opacity-60">
+                        {chineseTranslation && <div className="text-xs opacity-60">
                             {chineseTranslation}
-                          </div>
-                        )}
+                          </div>}
                       </div>
                     </div>
                   </div>;
@@ -138,7 +130,7 @@ export const ResultsCard: React.FC<ResultsCardProps> = ({
           </div>
 
           <div className="space-y-4 p-4 md:p-6 bg-blue-50 rounded-xl">
-            <h3 className="sg-subheading text-xl text-center">Redeem your gift and hearing test</h3>
+            <h3 className="sg-subheading text-xl text-center">Redeem your FREE gift and hearing test in our clinic!</h3>
             <p className="sg-body text-center">Show this page to our friendly staff to redeem your gift. Do note that each player can only redeem their gift and hearing test once.</p>
           </div>
 
@@ -160,6 +152,5 @@ export const ResultsCard: React.FC<ResultsCardProps> = ({
       </Card>
 
       <Leaderboard leaderboard={leaderboard.slice(0, 5)} playerName={playerName} totalSounds={totalSounds} />
-    </div>
-  );
+    </div>;
 };
