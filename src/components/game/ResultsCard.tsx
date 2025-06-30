@@ -30,6 +30,7 @@ export const ResultsCard: React.FC<ResultsCardProps> = ({
   const [hasRated, setHasRated] = useState(false);
   const [interestedInHearingTest, setInterestedInHearingTest] = useState('');
   const [selectedOutlet, setSelectedOutlet] = useState('');
+  const [hasSubmittedResponse, setHasSubmittedResponse] = useState(false);
   const score = results.filter(result => result.correct).length;
   const totalSounds = sounds.length;
 
@@ -83,6 +84,24 @@ export const ResultsCard: React.FC<ResultsCardProps> = ({
       localStorage.setItem('sg60-participants', JSON.stringify(updatedParticipants));
       console.log('Updated player data:', newParticipant);
     }
+  };
+
+  const handleSubmitResponse = () => {
+    const responseData = {
+      playerName,
+      interestedInHearingTest,
+      selectedOutlet: interestedInHearingTest === 'yes' ? selectedOutlet : '',
+      timestamp: new Date().toISOString()
+    };
+    
+    console.log('Player hearing test response:', responseData);
+    
+    // Store response in localStorage
+    const storedResponses = JSON.parse(localStorage.getItem('sg60-hearing-test-responses') || '[]');
+    const updatedResponses = [...storedResponses, responseData];
+    localStorage.setItem('sg60-hearing-test-responses', JSON.stringify(updatedResponses));
+    
+    setHasSubmittedResponse(true);
   };
 
   const getScoreColor = (score: number) => {
@@ -169,6 +188,7 @@ export const ResultsCard: React.FC<ResultsCardProps> = ({
                   value={interestedInHearingTest}
                   onValueChange={setInterestedInHearingTest}
                   className="flex justify-center space-x-6"
+                  disabled={hasSubmittedResponse}
                 >
                   <div className="flex items-center space-x-2">
                     <RadioGroupItem value="yes" id="yes" />
@@ -184,7 +204,7 @@ export const ResultsCard: React.FC<ResultsCardProps> = ({
               {interestedInHearingTest === 'yes' && (
                 <div className="space-y-2">
                   <p className="sg-body text-center">If yes, indicate the outlet you'd like to visit:</p>
-                  <Select value={selectedOutlet} onValueChange={setSelectedOutlet}>
+                  <Select value={selectedOutlet} onValueChange={setSelectedOutlet} disabled={hasSubmittedResponse}>
                     <SelectTrigger className="w-full">
                       <SelectValue placeholder="Select an outlet" />
                     </SelectTrigger>
@@ -197,6 +217,23 @@ export const ResultsCard: React.FC<ResultsCardProps> = ({
                     </SelectContent>
                   </Select>
                 </div>
+              )}
+
+              {interestedInHearingTest && !hasSubmittedResponse && (
+                <div className="flex justify-center mt-4">
+                  <Button 
+                    onClick={handleSubmitResponse}
+                    className="bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded-lg"
+                  >
+                    Submit
+                  </Button>
+                </div>
+              )}
+
+              {hasSubmittedResponse && (
+                <p className="sg-body text-center text-sm opacity-70 mt-4">
+                  Thank you for your response!
+                </p>
               )}
             </div>
           </div>
