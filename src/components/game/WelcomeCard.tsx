@@ -20,7 +20,7 @@ export const WelcomeCard: React.FC<WelcomeCardProps> = ({
           <p className="sg-body">
             How well can you hear the sounds of our nation?
           </p>
-          <p className="sg-body">From hawker centre sizzles to MRT chimes, play our fun Sounds of Singapore game to find out.</p>
+          <p className="sg-body">From hawker centre sizzles to MRT chimes, play our fun Sounds of Singapore game to find out!</p>
           
           <div className="space-y-4 max-w-lg mx-auto w-full">
             <div className="grid grid-cols-2 gap-4">
