@@ -189,7 +189,7 @@ export const ResultsCard: React.FC<ResultsCardProps> = ({
                 </div>}
 
               {interestedInHearingTest && !hasSubmittedResponse && <div className="flex justify-center mt-4">
-                  <Button onClick={handleSubmitResponse} className="text-white px-6 py-2 bg-[#e40048] rounded-3xl">
+                  <Button onClick={handleSubmitResponse} className="text-white px-6 py-2 bg-[#e40048] rounded-3xl font-bold text-base">
                     Submit
                   </Button>
                 </div>}
