@@ -162,8 +162,6 @@ export const ResultsCard: React.FC<ResultsCardProps> = ({
           </div>
 
           <div className="space-y-4 p-4 md:p-6 bg-green-50 rounded-xl">
-            <h3 className="sg-subheading text-xl text-center leading-8">Hearing Test Interest</h3>
-            
             <div className="space-y-4">
               <div>
                 <h3 className="sg-subheading text-lg text-center mb-4 leading-8">Would you be interested in a free hearing test for yourself or your loved ones? *</h3>
