@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
+import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
+import { Label } from '@/components/ui/label';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Leaderboard } from './Leaderboard';
 import type { PlayerResult, SoundData, Player, PlayerParticulars } from '../SG60Game';
 
@@ -25,8 +28,22 @@ export const ResultsCard: React.FC<ResultsCardProps> = ({
   const [hoveredRating, setHoveredRating] = useState(0);
   const [leaderboard, setLeaderboard] = useState<Player[]>([]);
   const [hasRated, setHasRated] = useState(false);
+  const [interestedInHearingTest, setInterestedInHearingTest] = useState('');
+  const [selectedOutlet, setSelectedOutlet] = useState('');
   const score = results.filter(result => result.correct).length;
   const totalSounds = sounds.length;
+
+  const outlets = [
+    "Ang Mo Kio",
+    "Camden Medical (Hearing and Balance Centre)",
+    "Clementi",
+    "Farrer Park (Diagnostic Centre)",
+    "Lucky Plaza (Diagnostic Centre)",
+    "Novena (Diagnostic Centre)",
+    "Parkway Parade",
+    "Tampines",
+    "Yishun"
+  ];
 
   useEffect(() => {
     // Load leaderboard and add current player
@@ -174,6 +191,48 @@ export const ResultsCard: React.FC<ResultsCardProps> = ({
                 Thank you for your feedback! ({rating} star{rating !== 1 ? 's' : ''})
               </p>
             )}
+          </div>
+
+          <div className="space-y-4 p-4 md:p-6 bg-green-50 rounded-xl">
+            <h3 className="sg-subheading text-xl text-center leading-8">Hearing Test Interest</h3>
+            
+            <div className="space-y-4">
+              <div>
+                <p className="sg-body text-center mb-4">Would you be interested in a free hearing test for yourself or your loved ones? *</p>
+                <RadioGroup
+                  value={interestedInHearingTest}
+                  onValueChange={setInterestedInHearingTest}
+                  className="flex justify-center space-x-6"
+                >
+                  <div className="flex items-center space-x-2">
+                    <RadioGroupItem value="yes" id="yes" />
+                    <Label htmlFor="yes" className="sg-body">Yes</Label>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <RadioGroupItem value="no" id="no" />
+                    <Label htmlFor="no" className="sg-body">No</Label>
+                  </div>
+                </RadioGroup>
+              </div>
+
+              {interestedInHearingTest === 'yes' && (
+                <div className="space-y-2">
+                  <p className="sg-body text-center">If yes, indicate the outlet you'd like to visit:</p>
+                  <Select value={selectedOutlet} onValueChange={setSelectedOutlet}>
+                    <SelectTrigger className="w-full">
+                      <SelectValue placeholder="Select an outlet" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {outlets.map((outlet) => (
+                        <SelectItem key={outlet} value={outlet}>
+                          {outlet}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+              )}
+            </div>
           </div>
         </CardContent>
       </Card>
