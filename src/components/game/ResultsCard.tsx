@@ -6,7 +6,6 @@ import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Leaderboard } from './Leaderboard';
 import type { PlayerResult, SoundData, Player, PlayerParticulars } from '../SG60Game';
-
 interface ResultsCardProps {
   playerName: string;
   results: PlayerResult[];
@@ -15,7 +14,6 @@ interface ResultsCardProps {
   playerParticulars: PlayerParticulars | null;
   onRetakeQuiz: () => void;
 }
-
 export const ResultsCard: React.FC<ResultsCardProps> = ({
   playerName,
   results,
@@ -33,19 +31,7 @@ export const ResultsCard: React.FC<ResultsCardProps> = ({
   const [hasSubmittedResponse, setHasSubmittedResponse] = useState(false);
   const score = results.filter(result => result.correct).length;
   const totalSounds = sounds.length;
-
-  const outlets = [
-    "Ang Mo Kio",
-    "Camden Medical (Hearing and Balance Centre)",
-    "Clementi",
-    "Farrer Park (Diagnostic Centre)",
-    "Lucky Plaza (Diagnostic Centre)",
-    "Novena (Diagnostic Centre)",
-    "Parkway Parade",
-    "Tampines",
-    "Yishun"
-  ];
-
+  const outlets = ["Ang Mo Kio", "Camden Medical (Hearing and Balance Centre)", "Clementi", "Farrer Park (Diagnostic Centre)", "Lucky Plaza (Diagnostic Centre)", "Novena (Diagnostic Centre)", "Parkway Parade", "Tampines", "Yishun"];
   useEffect(() => {
     // Load leaderboard and add current player
     const storedLeaderboard = JSON.parse(localStorage.getItem('sg60-leaderboard') || '[]');
@@ -62,7 +48,6 @@ export const ResultsCard: React.FC<ResultsCardProps> = ({
     setLeaderboard(updatedLeaderboard);
     localStorage.setItem('sg60-leaderboard', JSON.stringify(updatedLeaderboard));
   }, [playerName, score, totalTime]);
-
   const handleRating = (stars: number) => {
     setRating(stars);
     setHasRated(true);
@@ -85,7 +70,6 @@ export const ResultsCard: React.FC<ResultsCardProps> = ({
       console.log('Updated player data:', newParticipant);
     }
   };
-
   const handleSubmitResponse = () => {
     const responseData = {
       playerName,
@@ -93,23 +77,19 @@ export const ResultsCard: React.FC<ResultsCardProps> = ({
       selectedOutlet: interestedInHearingTest === 'yes' ? selectedOutlet : '',
       timestamp: new Date().toISOString()
     };
-    
     console.log('Player hearing test response:', responseData);
-    
+
     // Store response in localStorage
     const storedResponses = JSON.parse(localStorage.getItem('sg60-hearing-test-responses') || '[]');
     const updatedResponses = [...storedResponses, responseData];
     localStorage.setItem('sg60-hearing-test-responses', JSON.stringify(updatedResponses));
-    
     setHasSubmittedResponse(true);
   };
-
   const getScoreColor = (score: number) => {
     if (score >= 8) return 'text-green-600';
     if (score >= 6) return 'text-yellow-600';
     return 'text-red-600';
   };
-
   const getChineseTranslation = (answer: string) => {
     const translations: {
       [key: string]: string;
@@ -127,9 +107,7 @@ export const ResultsCard: React.FC<ResultsCardProps> = ({
     };
     return translations[answer] || '';
   };
-
-  return (
-    <div className="space-y-6">
+  return <div className="space-y-6">
       <Card className="w-full bg-white shadow-lg border-0 rounded-3xl p-4 md:p-8">
         <CardContent className="space-y-6 md:space-y-8">
           <div className="text-center space-y-4">
@@ -154,9 +132,9 @@ export const ResultsCard: React.FC<ResultsCardProps> = ({
             <h3 className="sg-subheading text-xl text-center">Sound Breakdown</h3>
             <div className="grid gap-3">
               {results.map((result, index) => {
-                const soundNumber = index + 1;
-                const chineseTranslation = getChineseTranslation(result.selectedAnswer);
-                return <div key={result.soundId} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+              const soundNumber = index + 1;
+              const chineseTranslation = getChineseTranslation(result.selectedAnswer);
+              return <div key={result.soundId} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
                   <span className="sg-body font-medium">Sound {soundNumber}</span>
                   <div className="text-right">
                     <span className={`font-bold ${result.correct ? 'text-green-600' : 'text-red-600'}`}>
@@ -170,7 +148,7 @@ export const ResultsCard: React.FC<ResultsCardProps> = ({
                     </div>
                   </div>
                 </div>;
-              })}
+            })}
             </div>
           </div>
 
@@ -184,12 +162,7 @@ export const ResultsCard: React.FC<ResultsCardProps> = ({
             <div className="space-y-4">
               <div>
                 <h3 className="sg-subheading text-lg text-center mb-4 leading-8">Would you be interested in a free hearing test for yourself or your loved ones? *</h3>
-                <RadioGroup
-                  value={interestedInHearingTest}
-                  onValueChange={setInterestedInHearingTest}
-                  className="flex justify-center space-x-6"
-                  disabled={hasSubmittedResponse}
-                >
+                <RadioGroup value={interestedInHearingTest} onValueChange={setInterestedInHearingTest} className="flex justify-center space-x-6" disabled={hasSubmittedResponse}>
                   <div className="flex items-center space-x-2">
                     <RadioGroupItem value="yes" id="yes" />
                     <Label htmlFor="yes" className="sg-body">Yes</Label>
@@ -201,40 +174,29 @@ export const ResultsCard: React.FC<ResultsCardProps> = ({
                 </RadioGroup>
               </div>
 
-              {interestedInHearingTest === 'yes' && (
-                <div className="space-y-2">
+              {interestedInHearingTest === 'yes' && <div className="space-y-2">
                   <p className="sg-body text-center">If yes, indicate the outlet you'd like to visit:</p>
                   <Select value={selectedOutlet} onValueChange={setSelectedOutlet} disabled={hasSubmittedResponse}>
                     <SelectTrigger className="w-full">
                       <SelectValue placeholder="Select an outlet" />
                     </SelectTrigger>
                     <SelectContent>
-                      {outlets.map((outlet) => (
-                        <SelectItem key={outlet} value={outlet}>
+                      {outlets.map(outlet => <SelectItem key={outlet} value={outlet}>
                           {outlet}
-                        </SelectItem>
-                      ))}
+                        </SelectItem>)}
                     </SelectContent>
                   </Select>
-                </div>
-              )}
+                </div>}
 
-              {interestedInHearingTest && !hasSubmittedResponse && (
-                <div className="flex justify-center mt-4">
-                  <Button 
-                    onClick={handleSubmitResponse}
-                    className="bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded-lg"
-                  >
+              {interestedInHearingTest && !hasSubmittedResponse && <div className="flex justify-center mt-4">
+                  <Button onClick={handleSubmitResponse} className="text-white px-6 py-2 bg-[#e40048] rounded-3xl">
                     Submit
                   </Button>
-                </div>
-              )}
+                </div>}
 
-              {hasSubmittedResponse && (
-                <p className="sg-body text-center text-sm opacity-70 mt-4">
+              {hasSubmittedResponse && <p className="sg-body text-center text-sm opacity-70 mt-4">
                   Thank you for your response!
-                </p>
-              )}
+                </p>}
             </div>
           </div>
 
@@ -242,36 +204,19 @@ export const ResultsCard: React.FC<ResultsCardProps> = ({
             <h3 className="sg-subheading text-xl text-center leading-8">How did you enjoy the SG60 Sound Game?</h3>
             <p className="sg-body text-center">Please rate your experience!</p>
             
-            <div 
-              className="flex justify-center space-x-2"
-              onMouseLeave={() => setHoveredRating(0)}
-            >
-              {[1, 2, 3, 4, 5].map(star => (
-                <button
-                  key={star}
-                  onClick={() => handleRating(star)}
-                  onMouseEnter={() => setHoveredRating(star)}
-                  className={`text-3xl transition-colors ${
-                    star <= (hoveredRating || rating) 
-                      ? 'text-yellow-500' 
-                      : 'text-gray-300 hover:text-yellow-400'
-                  }`}
-                >
+            <div className="flex justify-center space-x-2" onMouseLeave={() => setHoveredRating(0)}>
+              {[1, 2, 3, 4, 5].map(star => <button key={star} onClick={() => handleRating(star)} onMouseEnter={() => setHoveredRating(star)} className={`text-3xl transition-colors ${star <= (hoveredRating || rating) ? 'text-yellow-500' : 'text-gray-300 hover:text-yellow-400'}`}>
                   {star <= (hoveredRating || rating) ? '⭐' : '☆'}
-                </button>
-              ))}
+                </button>)}
             </div>
             
-            {hasRated && (
-              <p className="sg-body text-center text-sm opacity-70">
+            {hasRated && <p className="sg-body text-center text-sm opacity-70">
                 Thank you for your feedback! ({rating} star{rating !== 1 ? 's' : ''})
-              </p>
-            )}
+              </p>}
           </div>
         </CardContent>
       </Card>
 
       <Leaderboard leaderboard={leaderboard.slice(0, 5)} playerName={playerName} totalSounds={totalSounds} />
-    </div>
-  );
+    </div>;
 };
