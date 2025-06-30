@@ -146,7 +146,7 @@ export const ResultsCard: React.FC<ResultsCardProps> = ({
           </div>
 
           <div className="space-y-4 p-4 md:p-6 bg-yellow-50 rounded-xl">
-            <h3 className="sg-subheading text-xl text-center">How did you enjoy the SG60 Sound Game?</h3>
+            <h3 className="sg-subheading text-xl text-center leading-8">How did you enjoy the SG60 Sound Game?</h3>
             <p className="sg-body text-center">Please rate your experience!</p>
             
             <div 
