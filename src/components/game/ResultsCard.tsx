@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
@@ -166,7 +167,7 @@ export const ResultsCard: React.FC<ResultsCardProps> = ({
             
             <div className="space-y-4">
               <div>
-                <p className="sg-body text-center mb-4">Would you be interested in a free hearing test for yourself or your loved ones? *</p>
+                <h3 className="sg-subheading text-lg text-center mb-4">Would you be interested in a free hearing test for yourself or your loved ones? *</h3>
                 <RadioGroup
                   value={interestedInHearingTest}
                   onValueChange={setInterestedInHearingTest}
