@@ -139,9 +139,10 @@ export const ResultsCard: React.FC<ResultsCardProps> = ({
           </div>
 
           <div className="space-y-4 p-4 md:p-6 bg-blue-50 rounded-xl">
-            <h3 className="sg-subheading text-xl text-center">Redeem your FREE gift and hearing test in our clinic!</h3>
+            <h3 className="sg-subheading text-xl text-center leading-8">Redeem your FREE gift and hearing test in our clinic!</h3>
             <p className="sg-body text-center">Show this page to our friendly staff to redeem your gift. Do note that each player can only redeem their gift and hearing test once.</p>
             <p className="sg-body text-center">To avoid disappointment, online players are encouraged to give us a call at 6238 8832 before heading down to redeem your items at any of our clinics to ensure availability of gifts.</p>
+            <p className="sg-body text-center">Our friendly staff will be happy to assist you with your redemption and answer any questions you may have about our services.</p>
           </div>
 
           <div className="space-y-4 p-4 md:p-6 bg-yellow-50 rounded-xl">
