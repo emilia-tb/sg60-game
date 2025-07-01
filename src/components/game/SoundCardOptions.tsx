@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Button } from '@/components/ui/button';
 interface SoundCardOptionsProps {
@@ -15,7 +14,7 @@ export const SoundCardOptions: React.FC<SoundCardOptionsProps> = ({
       "Bus Doors Closing": "巴士关门提示",
       "Koel Bird (\"Uwu\" Bird)": "噪鹃鸟 (\"呜呜\"鸟)",
       "Hawker Centre": "小贩中心",
-      "Ice Cream Cart Bell": "冰淇淋车铃",
+      "Ice Cream Scoop": "冰淇淋勺",
       "Kallang Wave": "加冷人浪",
       "Lion Dance": "舞狮",
       "Wet Market": "巴杀",
