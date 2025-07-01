@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { WelcomeCard } from './game/WelcomeCard';
 import { NameCard } from './game/NameCard';
@@ -41,7 +40,7 @@ const soundOptions = [
   "Bus Doors Closing", 
   "Koel Bird (\"Uwu\" Bird)",
   "Hawker Centre",
-  "Ice Cream Scoop",
+  "Ice Cream Cart Bell",
   "Kallang Wave",
   "Lion Dance",
   "Wet Market",
@@ -81,9 +80,9 @@ const sounds: SoundData[] = [
   {
     id: 5,
     name: "Ice Cream Cart",
-    description: "The sound of an ice cream scoop",
+    description: "The sound of an ice cream cart bell",
     audioUrl: "/sg-sound-game-ice-cream-bell.mp3",
-    correctAnswer: "Ice Cream Scoop"
+    correctAnswer: "Ice Cream Cart Bell"
   },
   {
     id: 6,
