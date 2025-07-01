@@ -6,6 +6,7 @@ import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Leaderboard } from './Leaderboard';
 import type { PlayerResult, SoundData, Player, PlayerParticulars } from '../SG60Game';
+
 interface ResultsCardProps {
   playerName: string;
   results: PlayerResult[];
@@ -155,7 +156,7 @@ export const ResultsCard: React.FC<ResultsCardProps> = ({
           <div className="space-y-4 p-4 md:p-6 bg-blue-50 rounded-xl">
             <h3 className="sg-subheading text-xl text-center leading-8">Redeem your FREE gift and hearing test in our clinic!</h3>
             <p className="sg-body text-center">Show this page to our friendly staff to redeem your gift*. Do note that each player can only redeem their gift and hearing test once.</p>
-            <p className="sg-body text-center text-xs">*Online players are encouraged to give us a call at 6238 8832 before heading down to redeem your items at any of our clinics to ensure availability of gifts.</p>
+            <p className="sg-body text-center text-[10px] italic">*Online players are encouraged to give us a call at 6238 8832 before heading down to redeem your items at any of our clinics to ensure availability of gifts.</p>
           </div>
 
           <div className="space-y-4 p-4 md:p-6 bg-green-50 rounded-xl">
