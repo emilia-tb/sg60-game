@@ -6,7 +6,6 @@ import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Leaderboard } from './Leaderboard';
 import type { PlayerResult, SoundData, Player, PlayerParticulars } from '../SG60Game';
-
 interface ResultsCardProps {
   playerName: string;
   results: PlayerResult[];
@@ -99,7 +98,7 @@ export const ResultsCard: React.FC<ResultsCardProps> = ({
       "Bus Doors Closing": "巴士关门提示",
       "Koel Bird (\"Uwu\" Bird)": "噪鹃鸟 (\"呜呜\"鸟)",
       "Hawker Centre": "小贩中心",
-      "Ice Cream Cart Bell": "冰淇淋推车铃",
+      "Ice Cream Scoop": "冰淇淋勺",
       "Kallang Wave": "加冷人浪",
       "Lion Dance": "舞狮",
       "Wet Market": "巴杀",
