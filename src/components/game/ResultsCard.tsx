@@ -98,7 +98,7 @@ export const ResultsCard: React.FC<ResultsCardProps> = ({
       "Bus Doors Closing": "巴士关门提示",
       "Koel Bird (\"Uwu\" Bird)": "噪鹃鸟 (\"呜呜\"鸟)",
       "Hawker Centre": "小贩中心",
-      "Ice Cream Scoop": "冰淇淋勺",
+      "Ice Cream Cart Bell": "冰淇淋推车铃",
       "Kallang Wave": "加冷人浪",
       "Lion Dance": "舞狮",
       "Wet Market": "巴杀",
