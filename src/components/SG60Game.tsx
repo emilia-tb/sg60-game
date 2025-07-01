@@ -82,7 +82,7 @@ const sounds: SoundData[] = [
     id: 5,
     name: "Ice Cream Cart",
     description: "The sound of an ice cream scoop",
-    audioUrl: "/sg60-sound-game-ice-cream-cart.mp3",
+    audioUrl: "/sg-sound-game-ice-cream-bell.mp3",
     correctAnswer: "Ice Cream Scoop"
   },
   {
