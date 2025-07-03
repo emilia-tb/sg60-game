@@ -3,7 +3,6 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Leaderboard } from './Leaderboard';
 import type { PlayerResult, SoundData, Player, PlayerParticulars } from '../SG60Game';
-
 interface ResultsCardProps {
   playerName: string;
   results: PlayerResult[];
@@ -17,7 +16,6 @@ interface ResultsCardProps {
   } | null;
   onRetakeQuiz: () => void;
 }
-
 export const ResultsCard: React.FC<ResultsCardProps> = ({
   playerName,
   results,
@@ -28,10 +26,8 @@ export const ResultsCard: React.FC<ResultsCardProps> = ({
   onRetakeQuiz
 }) => {
   const [leaderboard, setLeaderboard] = useState<Player[]>([]);
-
   const score = results.filter(result => result.correct).length;
   const totalSounds = sounds.length;
-
   useEffect(() => {
     // Load leaderboard and add current player
     const storedLeaderboard = JSON.parse(localStorage.getItem('sg60-leaderboard') || '[]');
@@ -54,7 +50,6 @@ export const ResultsCard: React.FC<ResultsCardProps> = ({
         ...playerParticulars,
         rating: feedbackData.rating
       };
-
       const storedParticipants = JSON.parse(localStorage.getItem('sg60-participants') || '[]');
       const newParticipant = {
         ...updatedParticulars,
@@ -67,13 +62,11 @@ export const ResultsCard: React.FC<ResultsCardProps> = ({
       console.log('Updated player data:', newParticipant);
     }
   }, [playerName, score, totalTime, playerParticulars, feedbackData]);
-
   const getScoreColor = (score: number) => {
     if (score >= 8) return 'text-green-600';
     if (score >= 6) return 'text-yellow-600';
     return 'text-red-600';
   };
-
   const getChineseTranslation = (answer: string) => {
     const translations: {
       [key: string]: string;
@@ -91,9 +84,7 @@ export const ResultsCard: React.FC<ResultsCardProps> = ({
     };
     return translations[answer] || '';
   };
-
-  return (
-    <div className="space-y-6">
+  return <div className="space-y-6">
       <Card className="w-full bg-white shadow-lg border-0 rounded-3xl p-4 md:p-8">
         <CardContent className="space-y-6 md:space-y-8">
           <div className="text-center space-y-4">
@@ -118,10 +109,9 @@ export const ResultsCard: React.FC<ResultsCardProps> = ({
             <h3 className="sg-subheading text-xl text-center">Sound Breakdown</h3>
             <div className="grid gap-3">
               {results.map((result, index) => {
-                const soundNumber = index + 1;
-                const chineseTranslation = getChineseTranslation(result.selectedAnswer);
-                return (
-                  <div key={result.soundId} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+              const soundNumber = index + 1;
+              const chineseTranslation = getChineseTranslation(result.selectedAnswer);
+              return <div key={result.soundId} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
                     <span className="sg-body font-medium">Sound {soundNumber}</span>
                     <div className="text-right">
                       <span className={`font-bold ${result.correct ? 'text-green-600' : 'text-red-600'}`}>
@@ -129,29 +119,25 @@ export const ResultsCard: React.FC<ResultsCardProps> = ({
                       </span>
                       <div className="text-xs opacity-70">
                         Your answer: {result.selectedAnswer}
-                        {chineseTranslation && (
-                          <div className="text-xs opacity-60">
+                        {chineseTranslation && <div className="text-xs opacity-60">
                             {chineseTranslation}
-                          </div>
-                        )}
+                          </div>}
                       </div>
                     </div>
-                  </div>
-                );
-              })}
+                  </div>;
+            })}
             </div>
           </div>
 
           <div className="space-y-4 p-4 md:p-6 bg-blue-50 rounded-xl">
             <h3 className="sg-subheading text-xl text-center leading-8">Redeem your FREE gift and hearing test in our clinic!</h3>
             <p className="sg-body text-center">Show this page to our friendly staff to redeem your gift*. Do note that each player can only redeem their gift and hearing test once.</p>
-            <p className="sg-body text-center italic text-[10px]">*Online players are encouraged to give us a call at 6238 8832 before heading down to redeem your items at any of our clinics to ensure availability of gifts.</p>
+            <p className="sg-body text-center italic text-xs font-light">*Online players are encouraged to give us a call at 6238 8832 before heading down to redeem your items at any of our clinics to ensure availability of gifts.</p>
           </div>
 
         </CardContent>
       </Card>
 
       <Leaderboard leaderboard={leaderboard.slice(0, 5)} playerName={playerName} totalSounds={totalSounds} />
-    </div>
-  );
+    </div>;
 };
