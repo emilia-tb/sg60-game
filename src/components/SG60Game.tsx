@@ -4,6 +4,7 @@ import { NameCard } from './game/NameCard';
 import { CountdownCard } from './game/CountdownCard';
 import { SoundCard } from './game/SoundCard';
 import { ParticularsCard } from './game/ParticularsCard';
+import { FeedbackCard } from './game/FeedbackCard';
 import { ResultsCard } from './game/ResultsCard';
 
 export interface SoundData {
@@ -129,6 +130,11 @@ const SG60Game: React.FC = () => {
   const [questionStartTime, setQuestionStartTime] = useState<number>(0);
   const [totalGameTime, setTotalGameTime] = useState<number>(0);
   const [playerParticulars, setPlayerParticulars] = useState<PlayerParticulars | null>(null);
+  const [feedbackData, setFeedbackData] = useState<{
+    rating: number;
+    interestedInHearingTest: string;
+    selectedOutlet: string;
+  } | null>(null);
 
   const handleStartGame = () => {
     setCurrentCard(1);
@@ -174,6 +180,24 @@ const SG60Game: React.FC = () => {
     setCurrentCard(14);
   };
 
+  const handleFeedbackComplete = (rating: number, interestedInHearingTest: string, selectedOutlet: string) => {
+    setFeedbackData({ rating, interestedInHearingTest, selectedOutlet });
+    
+    // Store feedback data
+    const responseData = {
+      playerName,
+      interestedInHearingTest,
+      selectedOutlet: interestedInHearingTest === 'yes' ? selectedOutlet : '',
+      timestamp: new Date().toISOString()
+    };
+    
+    const storedResponses = JSON.parse(localStorage.getItem('sg60-hearing-test-responses') || '[]');
+    const updatedResponses = [...storedResponses, responseData];
+    localStorage.setItem('sg60-hearing-test-responses', JSON.stringify(updatedResponses));
+    
+    setCurrentCard(15);
+  };
+
   const handleRetakeQuiz = () => {
     setCurrentCard(0);
     setPlayerName('');
@@ -182,6 +206,7 @@ const SG60Game: React.FC = () => {
     setQuestionStartTime(0);
     setTotalGameTime(0);
     setPlayerParticulars(null);
+    setFeedbackData(null);
   };
 
   const getElapsedTime = () => {
@@ -229,12 +254,21 @@ const SG60Game: React.FC = () => {
         );
       case 14:
         return (
+          <FeedbackCard
+            playerName={playerName}
+            playerParticulars={playerParticulars}
+            onComplete={handleFeedbackComplete}
+          />
+        );
+      case 15:
+        return (
           <ResultsCard
             playerName={playerName}
             results={results}
             sounds={sounds}
             totalTime={totalGameTime}
             playerParticulars={playerParticulars}
+            feedbackData={feedbackData}
             onRetakeQuiz={handleRetakeQuiz}
           />
         );
