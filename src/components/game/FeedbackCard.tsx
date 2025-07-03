@@ -45,32 +45,6 @@ export const FeedbackCard: React.FC<FeedbackCardProps> = ({
           </p>
         </div>
 
-        <div className="space-y-4 p-4 md:p-6 bg-yellow-50 rounded-xl">
-          <h3 className="sg-subheading text-xl text-center leading-8">How did you enjoy the SG60 Sound Game?</h3>
-          <p className="sg-body text-center">Please rate your experience!</p>
-          
-          <div className="flex justify-center space-x-2" onMouseLeave={() => setHoveredRating(0)}>
-            {[1, 2, 3, 4, 5].map(star => (
-              <button 
-                key={star}
-                onClick={() => setRating(star)}
-                onMouseEnter={() => setHoveredRating(star)}
-                className={`text-3xl transition-colors ${
-                  star <= (hoveredRating || rating) ? 'text-yellow-500' : 'text-gray-300 hover:text-yellow-400'
-                }`}
-              >
-                {star <= (hoveredRating || rating) ? '⭐' : '☆'}
-              </button>
-            ))}
-          </div>
-          
-          {rating > 0 && (
-            <p className="sg-body text-center text-sm opacity-70">
-              Thank you for your feedback! ({rating} star{rating !== 1 ? 's' : ''})
-            </p>
-          )}
-        </div>
-
         <div className="space-y-4 p-4 md:p-6 bg-green-50 rounded-xl">
           <div className="space-y-4">
             <div>
@@ -105,6 +79,32 @@ export const FeedbackCard: React.FC<FeedbackCardProps> = ({
               </div>
             )}
           </div>
+        </div>
+
+        <div className="space-y-4 p-4 md:p-6 bg-yellow-50 rounded-xl">
+          <h3 className="sg-subheading text-xl text-center leading-8">How did you enjoy the SG60 Sound Game?</h3>
+          <p className="sg-body text-center">Please rate your experience!</p>
+          
+          <div className="flex justify-center space-x-2" onMouseLeave={() => setHoveredRating(0)}>
+            {[1, 2, 3, 4, 5].map(star => (
+              <button 
+                key={star}
+                onClick={() => setRating(star)}
+                onMouseEnter={() => setHoveredRating(star)}
+                className={`text-3xl transition-colors ${
+                  star <= (hoveredRating || rating) ? 'text-yellow-500' : 'text-gray-300 hover:text-yellow-400'
+                }`}
+              >
+                {star <= (hoveredRating || rating) ? '⭐' : '☆'}
+              </button>
+            ))}
+          </div>
+          
+          {rating > 0 && (
+            <p className="sg-body text-center text-sm opacity-70">
+              Thank you for your feedback! ({rating} star{rating !== 1 ? 's' : ''})
+            </p>
+          )}
         </div>
 
         <div className="flex justify-center mt-6">
