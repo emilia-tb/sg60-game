@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
@@ -149,14 +148,6 @@ export const ResultsCard: React.FC<ResultsCardProps> = ({
             <p className="sg-body text-center italic text-[10px]">*Online players are encouraged to give us a call at 6238 8832 before heading down to redeem your items at any of our clinics to ensure availability of gifts.</p>
           </div>
 
-          <div className="flex justify-center mt-6">
-            <Button 
-              onClick={onRetakeQuiz}
-              className="text-white px-8 py-3 bg-[#e40048] rounded-3xl font-bold text-base"
-            >
-              Play Again
-            </Button>
-          </div>
         </CardContent>
       </Card>
 
