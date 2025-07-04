@@ -17,44 +17,41 @@ export const SoundCardPlayer: React.FC<SoundCardPlayerProps> = ({ sound, onPlayC
 
   // Preload audio when component mounts
   useEffect(() => {
-    const preloadAudio = () => {
-      try {
-        const audio = new Audio();
-        audioRef.current = audio;
-        
-        audio.oncanplaythrough = () => {
-          console.log('Audio preloaded and ready to play');
-          setIsPreloaded(true);
-        };
-        
-        audio.onerror = (error) => {
-          console.error(`Error preloading audio: ${sound.audioUrl}`, error);
-          setAudioError(true);
-        };
+  const audio = new Audio();
+  audioRef.current = audio;
 
-        audio.preload = 'auto';
-        audio.src = sound.audioUrl;
-        audio.load();
-      } catch (error) {
-        console.error('Error setting up audio preload:', error);
-        setAudioError(true);
-      }
-    };
+  audio.preload = 'auto';
+  audio.src = sound.audioUrl;
 
-    preloadAudio();
+  audio.oncanplaythrough = () => {
+    console.log('Audio preloaded and ready to play');
+    
+    setIsPreloaded(true);
+    setAudioError(false);
+  };
 
-    return () => {
-      if (audioRef.current) {
-        audioRef.current.pause();
-        audioRef.current = null;
-      }
-    };
-  }, [sound.audioUrl]);
+  audio.onerror = (error) => {
+    console.error(`Error preloading audio: ${sound.audioUrl}`, error);
+    setAudioError(true);
+  };
+
+  audio.load();
+
+  return () => {
+    if (audioRef.current) {
+      audioRef.current.pause();
+      audioRef.current = null;
+    }
+
+     setIsPlaying(false); // Reset button state
+  };
+}, [sound.audioUrl]);
+
 
   const handlePlaySound = async () => {
     console.log(`Attempting to play sound: ${sound.name} from URL: ${sound.audioUrl}`);
     setIsPlaying(true);
-    onPlayComplete();
+    // onPlayComplete();
     setAudioError(false);
     
     try {
@@ -71,6 +68,7 @@ export const SoundCardPlayer: React.FC<SoundCardPlayerProps> = ({ sound, onPlayC
       audio.onended = () => {
         console.log(`Audio ended: ${sound.name}`);
         setIsPlaying(false);
+        onPlayComplete();
       };
       
       audio.onerror = (error) => {
@@ -79,12 +77,18 @@ export const SoundCardPlayer: React.FC<SoundCardPlayerProps> = ({ sound, onPlayC
         playBeepSound();
       };
 
+      if (isPlaying) {
+        audio.pause();
+        audio.currentTime = 0;
+      }
+
       // Play immediately since audio is preloaded
       const playPromise = audio.play();
       
       if (playPromise !== undefined) {
         await playPromise;
         console.log(`Successfully playing: ${sound.name}`);
+        setIsPlaying(true);
         
         // Auto-stop after 10 seconds
         setTimeout(() => {
