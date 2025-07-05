@@ -63,7 +63,7 @@ export const CountdownCard: React.FC<CountdownCardProps> = ({ onComplete }) => {
         
         <audio
           ref={audioRef}
-          src="/sg60-sound-game-start-sound.mp3"
+          src="sounds/sg60-sound-game-start-sound.mp3"
           loop
           preload="auto"
           playsInline

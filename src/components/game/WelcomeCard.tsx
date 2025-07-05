@@ -13,7 +13,7 @@ export const WelcomeCard: React.FC<WelcomeCardProps> = ({
         <h2 className="sg-subheading pt-4 md:pt-8 lg:pt-12">Join us in celebrating SG60 — can you guess these iconic Singapore sounds? 🤔</h2>
         
         <div className="flex justify-center mb-6">
-          <img alt="SG60 NDP Celebration" className="max-w-full h-auto rounded-lg shadow-md" src="/lovable-uploads/ffe149aa-81a5-4028-9eee-ba036322b294.png" />
+          <img alt="SG60 NDP Celebration" className="max-w-full h-auto rounded-lg shadow-md" src="images/ffe149aa-81a5-4028-9eee-ba036322b294.jpg" />
         </div>
         
         <div className="space-y-4">

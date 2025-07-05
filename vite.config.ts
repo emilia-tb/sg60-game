@@ -9,6 +9,7 @@ export default defineConfig(({ mode }) => ({
     host: "::",
     port: 8080,
   },
+  base: '/sg60-sound-game/',
   plugins: [
     react(),
     mode === 'development' &&

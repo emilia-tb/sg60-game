@@ -33,9 +33,12 @@ export const ResultsCard: React.FC<ResultsCardProps> = ({
   useEffect(() => {
     const saveAndFetch = async () => {
       try {
-        const res = await fetch('/api/save-participant.php', {
+        const res = await fetch('api/save-participant.php', {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+          headers: { 
+            'Content-Type': 'application/json',
+            'X-SG60-Secret': 'ZheWfSfNl2xJrJfB9H1C6LHgIGpfpOIx',
+          },
           body: JSON.stringify({
             name: playerParticulars.name,
             phone: playerParticulars?.phone,
@@ -54,7 +57,7 @@ export const ResultsCard: React.FC<ResultsCardProps> = ({
       }
  
       try {
-        const leaderboardRes = await fetch('/api/get-leaderboard.php');
+        const leaderboardRes = await fetch('api/get-leaderboard.php');
         const data = await leaderboardRes.json();
         const sorted = data
           .filter((p: any) => p.name && p.score != null && p.total_time != null)

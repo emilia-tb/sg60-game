@@ -54,70 +54,70 @@ const sounds: SoundData[] = [
     id: 1,
     name: "Mahjong",
     description: "The sound of mahjong tiles",
-    audioUrl: "/sg60-sound-game-mahjong.wav",
+    audioUrl: "sounds/sg60-sound-game-mahjong.wav",
     correctAnswer: "Mahjong"
   },
   {
     id: 2,
     name: "Hawker Sounds",
     description: "The bustling sounds of a Singapore hawker centre",
-    audioUrl: "/sg60-sound-game-hawker.mp3",
+    audioUrl: "sounds/sg60-sound-game-hawker.mp3",
     correctAnswer: "Hawker Centre"
   },
   {
     id: 3,
     name: "Birdsong",
     description: "The sound of the iconic Koel bird",
-    audioUrl: "/sg60-sound-game-koel-bird.mp3",
+    audioUrl: "sounds/sg60-sound-game-koel-bird.mp3",
     correctAnswer: "Koel Bird (\"Uwu\" Bird)"
   },
   {
     id: 4,
     name: "Lion Dance",
     description: "Traditional lion dance performance",
-    audioUrl: "/sg60-sound-game-lion-dance.mp3",
+    audioUrl: "sounds/sg60-sound-game-lion-dance.mp3",
     correctAnswer: "Lion Dance"
   },
   {
     id: 5,
     name: "Ice Cream Cart",
     description: "The sound of an ice cream cart bell",
-    audioUrl: "/sg-sound-game-ice-cream-bell.mp3",
+    audioUrl: "sounds/sg-sound-game-ice-cream-bell.mp3",
     correctAnswer: "Ice Cream Cart Bell"
   },
   {
     id: 6,
     name: "Wet Market",
     description: "The lively sounds of a traditional wet market",
-    audioUrl: "/sg60-sound-game-market.mp3",
+    audioUrl: "sounds/sg60-sound-game-market.mp3",
     correctAnswer: "Wet Market"
   },
   {
     id: 7,
     name: "MRT Chime",
     description: "Singapore MRT door closing chime",
-    audioUrl: "/sg60-sound-game-mrt.mp3",
+    audioUrl: "sounds/sg60-sound-game-mrt.mp3",
     correctAnswer: "MRT Chime"
   },
   {
     id: 8,
     name: "Bus Doors Closing",
     description: "Singapore bus door closing beep",
-    audioUrl: "/sg60-sound-game-bus-doors-closing.mp3",
+    audioUrl: "sounds/sg60-sound-game-bus-doors-closing.mp3",
     correctAnswer: "Bus Doors Closing"
   },
   {
     id: 9,
     name: "Kallang Wave",
     description: "The roar of the Kallang Wave at the stadium",
-    audioUrl: "/sg60-sound-game-kallang-wave.mp3",
+    audioUrl: "sounds/sg60-sound-game-kallang-wave.mp3",
     correctAnswer: "Kallang Wave"
   },
   {
     id: 10,
     name: "National Anthem",
     description: "Singapore's national anthem",
-    audioUrl: "/sg60-sound-game-national-anthem.mp3",
+    audioUrl: "sounds/sg60-sound-game-national-anthem.mp3",
     correctAnswer: "National Anthem"
   }
 ];
