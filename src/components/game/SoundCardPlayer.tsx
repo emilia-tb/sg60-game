@@ -23,9 +23,7 @@ export const SoundCardPlayer: React.FC<SoundCardPlayerProps> = ({ sound, onPlayC
   audio.preload = 'auto';
   audio.src = sound.audioUrl;
 
-  audio.oncanplaythrough = () => {
-    console.log('Audio preloaded and ready to play');
-    
+  audio.oncanplaythrough = () => {   
     setIsPreloaded(true);
     setAudioError(false);
   };
@@ -49,7 +47,6 @@ export const SoundCardPlayer: React.FC<SoundCardPlayerProps> = ({ sound, onPlayC
 
 
   const handlePlaySound = async () => {
-    console.log(`Attempting to play sound: ${sound.name} from URL: ${sound.audioUrl}`);
     setIsPlaying(true);
     // onPlayComplete();
     setAudioError(false);
@@ -66,7 +63,6 @@ export const SoundCardPlayer: React.FC<SoundCardPlayerProps> = ({ sound, onPlayC
       
       // Set up event listeners for this play session
       audio.onended = () => {
-        console.log(`Audio ended: ${sound.name}`);
         setIsPlaying(false);
         onPlayComplete();
       };
@@ -87,7 +83,6 @@ export const SoundCardPlayer: React.FC<SoundCardPlayerProps> = ({ sound, onPlayC
       
       if (playPromise !== undefined) {
         await playPromise;
-        console.log(`Successfully playing: ${sound.name}`);
         setIsPlaying(true);
         
         // Auto-stop after 10 seconds
@@ -107,7 +102,6 @@ export const SoundCardPlayer: React.FC<SoundCardPlayerProps> = ({ sound, onPlayC
   };
 
   const playBeepSound = () => {
-    console.log('Playing fallback beep sound');
     try {
       const AudioContext = window.AudioContext || (window as any).webkitAudioContext;
       const audioContext = new AudioContext();

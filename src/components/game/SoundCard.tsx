@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { SoundCardTimer } from './SoundCardTimer';
@@ -15,17 +14,25 @@ interface SoundCardProps {
   onResponse: (selectedAnswer: string) => void;
 }
 
-export const SoundCard: React.FC<SoundCardProps> = ({ 
-  sound, 
-  soundNumber, 
-  totalSounds, 
+export const SoundCard: React.FC<SoundCardProps> = ({
+  sound,
+  soundNumber,
+  totalSounds,
   soundOptions,
   elapsedTime,
-  onResponse 
+  onResponse
 }) => {
   const [hasPlayed, setHasPlayed] = useState(false);
+  const [showOptions, setShowOptions] = useState(false);
   const [currentTime, setCurrentTime] = useState(elapsedTime);
 
+  // Reset states when a new sound arrives
+  useEffect(() => {
+    setHasPlayed(false);
+    setShowOptions(false);
+  }, [sound]);
+
+  // Track elapsed time
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentTime(prev => prev + 1);
@@ -34,12 +41,14 @@ export const SoundCard: React.FC<SoundCardProps> = ({
     return () => clearInterval(timer);
   }, []);
 
+  // Sync time on prop change
   useEffect(() => {
     setCurrentTime(elapsedTime);
   }, [elapsedTime]);
 
   const handlePlayComplete = () => {
     setHasPlayed(true);
+    setShowOptions(true);
   };
 
   return (
@@ -52,14 +61,14 @@ export const SoundCard: React.FC<SoundCardProps> = ({
             Sound {soundNumber} of {totalSounds}
           </h2>
         </div>
-        
-        <SoundCardPlayer 
-          sound={sound} 
+
+        <SoundCardPlayer
+          sound={sound}
           onPlayComplete={handlePlayComplete}
         />
-        
-        {hasPlayed && (
-          <SoundCardOptions 
+
+        {showOptions && (
+          <SoundCardOptions
             soundOptions={soundOptions}
             onResponse={onResponse}
           />

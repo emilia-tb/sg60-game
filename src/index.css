@@ -120,7 +120,23 @@
   font-weight: 700;
   font-size: 16px;
 }
-
+.sg60-game-header{
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  align-items: center;
+  background: white;
+}
+.sg60-game-logo{
+  width: 300px;
+  padding: 20px;
+}
+.sg60-game-banner-desktop{
+  display: block;
+}
+.sg60-game-banner-mobile{
+  display: none;
+}
 @media (max-width: 768px) {
   .sg-heading {
     font-size: 28px;
@@ -136,5 +152,11 @@
   
   .sg-button {
     font-size: 16px;
+  }
+  .sg60-game-banner-desktop{
+    display: none;
+  }
+  .sg60-game-banner-mobile{
+    display: block;
   }
 }

@@ -18,7 +18,6 @@ export const CountdownCard: React.FC<CountdownCardProps> = ({ onComplete }) => {
       
       // Set up event listeners
       audioRef.current.oncanplaythrough = () => {
-        console.log('Audio preloaded and ready to play');
         // Play immediately when ready
         if (audioRef.current) {
           audioRef.current.play().catch(console.error);
