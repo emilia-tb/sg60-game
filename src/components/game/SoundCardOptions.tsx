@@ -11,16 +11,16 @@ export const SoundCardOptions: React.FC<SoundCardOptionsProps> = ({
 }) => {
   const getChineseTranslation = (option: string) => {
     const translations: Record<string, string> = {
-      "MRT Chime": "地铁铃声",
-      "Bus Doors Closing": "巴士关门提示",
-      "Koel Bird (\"Uwu\" Bird)": "噪鹃鸟 (\"呜呜\"鸟)",
-      "Hawker Centre": "小贩中心",
-      "Ice Cream Cart Bell": "冰淇淋推车铃",
-      "Kallang Wave": "加冷人浪",
-      "Lion Dance": "舞狮",
-      "Wet Market": "巴杀",
+      "Pedestrian Traffic Light": "行人交通灯",
+      "Typing on the keyboard": "在键盘上打字",
+      "Fireworks": "烟花",
+      "Door bell": "门铃",
+      "Kompang instrument": "传统马来鼓",
+      "Rain": "雨声",
+      "Hawker centre": "小贩中心",
+      "Mobile phone vibrating": "手机震动",
       "National Anthem": "国歌",
-      "Mahjong": "麻将"
+      "Airplane": "飞机"
     };
     return translations[option];
   };

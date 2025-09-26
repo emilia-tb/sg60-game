@@ -91,16 +91,16 @@ export const ResultsCard: React.FC<ResultsCardProps> = ({
 
   const getChineseTranslation = (answer: string) => {
     const translations: { [key: string]: string } = {
-      'MRT Chime': '地铁铃声',
-      'Bus Doors Closing': '巴士关门提示',
-      'Koel Bird ("Uwu" Bird)': '噪鹃鸟 ("呜呜"鸟)',
-      'Hawker Centre': '小贩中心',
-      'Ice Cream Cart Bell': '冰淇淋推车铃',
-      'Kallang Wave': '加冷人浪',
-      'Lion Dance': '舞狮',
-      'Wet Market': '巴杀',
-      'National Anthem': '国歌',
-      Mahjong: '麻将',
+      "Pedestrian Traffic Light": "行人交通灯",
+      "Typing on the keyboard": "在键盘上打字",
+      "Fireworks": "烟花",
+      "Door bell": "门铃",
+      "Kompang instrument": "传统马来鼓",
+      "Rain": "雨声",
+      "Hawker centre": "小贩中心",
+      "Mobile phone vibrating": "手机震动",
+      "National Anthem": "国歌",
+      "Airplane": "飞机"
     };
     return translations[answer] || '';
   };
@@ -144,12 +144,11 @@ export const ResultsCard: React.FC<ResultsCardProps> = ({
           </div>
 
           <div className="space-y-4 p-4 md:p-6 bg-blue-50 rounded-xl">
-            <h3 className="sg-subheading text-xl text-center leading-8">Redeem your FREE gift and hearing test in our clinic!</h3>
+            <h3 className="sg-subheading text-xl text-center leading-8">Redeem your FREE mystery gift!</h3>
             <p className="sg-body text-center">
-              Show this page to our friendly staff to redeem your gift*. Do note that each player can only redeem their
-              gift and hearing test once.
+              Show this page to our friendly staff to redeem your gift.
             </p>
-            <p className="opacity-50 text-center italic text-[12px] font-light">
+            <p className="opacity-50 text-center italic text-[12px] font-light hidden">
               *Online players are encouraged to give us a call at 6238 8832 before heading down to redeem your items at
               any of our clinics to ensure availability of gifts.
             </p>

@@ -17,7 +17,7 @@ export const FeedbackCard: React.FC<FeedbackCardProps> = ({
 }) => {
   const [rating, setRating] = useState(0);
   const [hoveredRating, setHoveredRating] = useState(0);
-  const [interestedInHearingTest, setInterestedInHearingTest] = useState('');
+  const [interestedInHearingTest, setInterestedInHearingTest] = useState('no');
   const [selectedOutlet, setSelectedOutlet] = useState('');
 
   const outlets = ["Ang Mo Kio", "Camden Medical (Hearing and Balance Centre)", "Clementi", "Farrer Park (Diagnostic Centre)", "Lucky Plaza (Diagnostic Centre)", "Novena (Diagnostic Centre)", "Parkway Parade", "Tampines", "Yishun"];
@@ -38,7 +38,7 @@ export const FeedbackCard: React.FC<FeedbackCardProps> = ({
           <p className="sg-body">Before we show your results, we'd love to get your feedback.</p>
         </div>
 
-        <div className="space-y-4 p-4 md:p-6 bg-green-50 rounded-xl">
+        <div className="space-y-4 p-4 md:p-6 bg-green-50 rounded-xl hidden">
           <div className="space-y-4">
             <h3 className="sg-subheading text-lg text-center mb-4 leading-8">Would you be interested in a free hearing test for yourself or your loved ones? *</h3>
             <RadioGroup value={interestedInHearingTest} onValueChange={setInterestedInHearingTest} className="flex justify-center space-x-6">
@@ -71,7 +71,7 @@ export const FeedbackCard: React.FC<FeedbackCardProps> = ({
         </div>
 
         <div className="space-y-4 p-4 md:p-6 bg-yellow-50 rounded-xl">
-          <h3 className="sg-subheading text-xl text-center leading-8">How did you enjoy the SG60 Sound Game?</h3>
+          <h3 className="sg-subheading text-xl text-center leading-8">How did you enjoy the sound game?</h3>
           <p className="sg-body text-center">Please rate your experience!</p>
           <div className="flex justify-center space-x-2" onMouseLeave={() => setHoveredRating(0)}>
             {[1, 2, 3, 4, 5].map(star => (

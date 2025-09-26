@@ -37,87 +37,87 @@ export interface PlayerParticulars {
 }
 
 const soundOptions = [
-  "MRT Chime",
-  "Bus Doors Closing", 
-  "Koel Bird (\"Uwu\" Bird)",
-  "Hawker Centre",
-  "Ice Cream Cart Bell",
-  "Kallang Wave",
-  "Lion Dance",
-  "Wet Market",
+  "Pedestrian Traffic Light",
+  "Typing on the keyboard", 
+  "Fireworks",
+  "Door bell",
+  "Kompang instrument",
+  "Rain",
+  "Hawker centre",
+  "Mobile phone vibrating",
   "National Anthem",
-  "Mahjong"
+  "Airplane"
 ];
 
 const sounds: SoundData[] = [
   {
     id: 1,
-    name: "Mahjong",
-    description: "The sound of mahjong tiles",
-    audioUrl: "sounds/sg60-sound-game-mahjong.wav",
-    correctAnswer: "Mahjong"
+    name: "Airplane",
+    description: "MY Sound Game - Airplane",
+    audioUrl: "sounds/my-sound-game-airplane.mp3",
+    correctAnswer: "Airplane"
   },
   {
     id: 2,
-    name: "Hawker Sounds",
-    description: "The bustling sounds of a Singapore hawker centre",
-    audioUrl: "sounds/sg60-sound-game-hawker.mp3",
-    correctAnswer: "Hawker Centre"
+    name: "Door bell",
+    description: "MY Sound Game - Door Bell Sound Effect",
+    audioUrl: "sounds/my-sound-game-door-bell-sound-effect.mp3",
+    correctAnswer: "Door bell"
   },
   {
     id: 3,
-    name: "Birdsong",
-    description: "The sound of the iconic Koel bird",
-    audioUrl: "sounds/sg60-sound-game-koel-bird.mp3",
-    correctAnswer: "Koel Bird (\"Uwu\" Bird)"
+    name: "Fireworks",
+    description: "MY Sound Game - Fireworks",
+    audioUrl: "sounds/my-sound-game-fireworks.mp3",
+    correctAnswer: "Fireworks"
   },
   {
     id: 4,
-    name: "Lion Dance",
-    description: "Traditional lion dance performance",
-    audioUrl: "sounds/sg60-sound-game-lion-dance.mp3",
-    correctAnswer: "Lion Dance"
+    name: "Hawker centre",
+    description: "MY Sound Game - Hawker",
+    audioUrl: "sounds/my-sound-game-hawker.mp3",
+    correctAnswer: "Hawker centre"
   },
   {
     id: 5,
-    name: "Ice Cream Cart",
-    description: "The sound of an ice cream cart bell",
-    audioUrl: "sounds/sg-sound-game-ice-cream-bell.mp3",
-    correctAnswer: "Ice Cream Cart Bell"
+    name: "Kompang instrument",
+    description: "MY Sound Game - Kompang Instrument",
+    audioUrl: "sounds/my-sound-game-kompang-instrument.mp3",
+    correctAnswer: "Kompang instrument"
   },
   {
     id: 6,
-    name: "Wet Market",
-    description: "The lively sounds of a traditional wet market",
-    audioUrl: "sounds/sg60-sound-game-market.mp3",
-    correctAnswer: "Wet Market"
+    name: "Mobile phone vibrating",
+    description: "MY Sound Game - Mobile Phone Vibrating",
+    audioUrl: "sounds/my-sound-game-mobile-phone-vibrating.mp3",
+    correctAnswer: "Mobile phone vibrating"
   },
   {
     id: 7,
-    name: "MRT Chime",
-    description: "Singapore MRT door closing chime",
-    audioUrl: "sounds/sg60-sound-game-mrt.mp3",
-    correctAnswer: "MRT Chime"
+    name: "Pedestrian Traffic Light",
+    description: "MY Sound Game - Pedestrian Traffic Lights",
+    audioUrl: "sounds/my-sound-game-pedestrian-traffic-lights.mp3",
+    correctAnswer: "Pedestrian Traffic Light"
   },
   {
     id: 8,
-    name: "Bus Doors Closing",
-    description: "Singapore bus door closing beep",
-    audioUrl: "sounds/sg60-sound-game-bus-doors-closing.mp3",
-    correctAnswer: "Bus Doors Closing"
+    name: "Typing on the keyboard",
+    description: "MY Sound Game - Typing on the Keyboard",
+    audioUrl: "sounds/my-sound-game-typing-on-the-keyboard.mp3",
+    correctAnswer: "Typing on the keyboard"
   },
   {
     id: 9,
-    name: "Kallang Wave",
-    description: "The roar of the Kallang Wave at the stadium",
-    audioUrl: "sounds/sg60-sound-game-kallang-wave.mp3",
-    correctAnswer: "Kallang Wave"
+    name: "Rain",
+    description: "MY Sound Game - Rain",
+    audioUrl: "sounds/my-sound-game-rain.mp3",
+    correctAnswer: "Rain"
   },
   {
     id: 10,
     name: "National Anthem",
-    description: "Singapore's national anthem",
-    audioUrl: "sounds/sg60-sound-game-national-anthem.mp3",
+    description: "MY Sound Game - National Anthem",
+    audioUrl: "sounds/my-sound-game-national-anthem.mp3",
     correctAnswer: "National Anthem"
   }
 ];

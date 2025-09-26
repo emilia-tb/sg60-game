@@ -10,17 +10,17 @@ export const WelcomeCard: React.FC<WelcomeCardProps> = ({
 }) => {
   return <Card className="w-full bg-white shadow-lg border-0 rounded-3xl p-2 md:p-4">
       <CardContent className="text-center space-y-4 md:space-y-6">
-        <h2 className="sg-subheading pt-4 md:pt-8 lg:pt-12">Join us in celebrating SG60 — can you guess these iconic Singapore sounds? 🤔</h2>
+        <h2 className="sg-subheading pt-4 md:pt-8 lg:pt-12">Can you guess these sounds? 🤔</h2>
         
-        <div className="flex justify-center mb-6">
+        {/* <div className="flex justify-center mb-6">
           <img alt="SG60 NDP Celebration" className="max-w-full h-auto rounded-lg shadow-md" src="images/ffe149aa-81a5-4028-9eee-ba036322b294.jpg" />
-        </div>
+        </div> */}
         
         <div className="space-y-4">
           <p className="sg-body">
-            How well can you hear the sounds of our nation?
+            How well can you hear these sounds?
           </p>
-          <p className="sg-body">From hawker centre sizzles to MRT chimes, play our fun Sounds of Singapore game to find out!</p>
+          <p className="sg-body">From hawker centre sizzles to fireworks, play our fun sound game to find out!</p>
           
           <div className="space-y-4 max-w-lg mx-auto w-full">
             <div className="grid grid-cols-2 gap-4">
@@ -34,7 +34,7 @@ export const WelcomeCard: React.FC<WelcomeCardProps> = ({
               </div>
             </div>
             <div className="text-center p-4 border-2 border-blue-400 rounded-xl bg-sky-100 px-[9px] w-full">
-              <span className="sg-body text-[#005da9] font-bold">Win a free hearing check and limited edition SG60 gift upon completing the game!</span>
+              <span className="sg-body text-[#005da9] font-bold">Win a mystery gift upon completing the game! 🎁</span>
             </div>
           </div>
         </div>
