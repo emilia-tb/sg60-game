@@ -104,6 +104,21 @@ export const ResultsCard: React.FC<ResultsCardProps> = ({
     };
     return translations[answer] || '';
   };
+  const getBahasaMelayuTranslation = (option: string) => {
+    const translations: Record<string, string> = {
+      "Pedestrian Traffic Light": "Lampu Pejalan Kaki",
+      "Typing on the keyboard": "Menaip di papan kekunci",
+      "Fireworks": "Bunga Api",
+      "Door bell": "Loceng",
+      "Kompang instrument": "Pukulan Kompang",
+      "Rain": "Hujan",
+      "Hawker centre": "Medan Selera",
+      "Mobile phone vibrating": "Getaran Telefon Bimbit",
+      "National Anthem": "Negaraku (Lagu Kebangsaan)",
+      "Airplane": "Kapal Terbang"
+    };
+    return translations[option];
+  };
 
   return (
     <div className="space-y-6">
@@ -122,6 +137,7 @@ export const ResultsCard: React.FC<ResultsCardProps> = ({
               {results.map((result, index) => {
                 const soundNumber = index + 1;
                 const chineseTranslation = getChineseTranslation(result.selectedAnswer);
+                const bahasaMelayuTranslation = getBahasaMelayuTranslation(result.selectedAnswer);
                 return (
                   <div
                     key={result.soundId}
@@ -134,6 +150,7 @@ export const ResultsCard: React.FC<ResultsCardProps> = ({
                       </span>
                       <div className="text-xs opacity-70">
                         Your answer: {result.selectedAnswer}
+                        {bahasaMelayuTranslation && <div className="text-xs opacity-60">{bahasaMelayuTranslation}</div>}
                         {chineseTranslation && <div className="text-xs opacity-60">{chineseTranslation}</div>}
                       </div>
                     </div>
