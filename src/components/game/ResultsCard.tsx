@@ -161,7 +161,7 @@ export const ResultsCard: React.FC<ResultsCardProps> = ({
           </div>
 
           <div className="space-y-4 p-4 md:p-6 bg-blue-50 rounded-xl">
-            <h3 className="sg-subheading text-xl text-center leading-8">Redeem your FREE mystery gift!</h3>
+            <h3 className="sg-subheading text-xl text-center leading-8">Redeem your exclusive gift!</h3>
             <p className="sg-body text-center">
               Show this page to our friendly staff to redeem your gift.
             </p>
